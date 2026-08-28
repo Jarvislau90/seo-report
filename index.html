@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mepsking.shop SEO 问题优先级报告（2026-08-28）</title>
+<style>
+:root {
+  --bg:#0b1120; --panel:#111a2e; --card:#16213a; --card2:#1b2846;
+  --line:#24345c; --tx:#e5eaf5; --tx2:#9fb0d0; --tx3:#6b7ea6;
+  --red:#f87171; --orange:#fb923c; --yellow:#fbbf24; --blue:#60a5fa; --green:#34d399;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--tx); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; line-height:1.6; padding:28px 20px 60px; }
+.wrap { max-width:1400px; margin:0 auto; }
+h1 { font-size:24px; margin-bottom:6px; }
+.sub { color:var(--tx2); font-size:13px; margin-bottom:24px; }
+.sub b { color:var(--tx); }
+.sumgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px; margin-bottom:26px; }
+.sum { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+.sum .v { font-size:26px; font-weight:700; }
+.sum .l { font-size:12px; color:var(--tx2); }
+.sum.p0 .v { color:var(--red); } .sum.p1 .v { color:var(--orange); }
+.sum.p2 .v { color:var(--yellow); } .sum.p3 .v { color:var(--blue); }
+.sum.ok .v { color:var(--green); }
+.pri { margin-bottom:34px; }
+.pri-head { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--line); }
+.pri-head h3 { font-size:18px; }
+.pri-count { background:var(--card2); border:1px solid var(--line); border-radius:20px; padding:1px 10px; font-size:12px; color:var(--tx2); }
+.pri-desc { font-size:12px; color:var(--tx3); }
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(420px,1fr)); gap:12px; }
+.p0group { grid-column:1 / -1; margin-top:6px; padding:8px 12px; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
+.p0group b { font-size:14px; }
+.p0group span { font-size:12px; color:var(--tx3); margin-left:10px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:8px; }
+.card-top { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.zh { font-size:15px; font-weight:600; }
+.num { font-size:20px; font-weight:700; color:var(--tx); white-space:nowrap; }
+#P0 .num { color:var(--red); } #P1 .num { color:var(--orange); } #P2 .num { color:var(--yellow); } #P3 .num { color:var(--blue); }
+.en { font-size:11px; color:var(--tx3); font-family:ui-monospace,Menlo,monospace; }
+.why { font-size:13px; color:var(--tx2); }
+.card-bottom { display:flex; align-items:center; gap:10px; }
+.barwrap { display:flex; align-items:center; gap:8px; flex:1; }
+.bar { flex:1; height:6px; background:#0d1526; border-radius:3px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:3px; }
+.bar-fill.high { background:var(--red); } .bar-fill.mid { background:var(--yellow); } .bar-fill.low { background:#3b82f6; }
+.pct { font-size:11px; color:var(--tx2); min-width:44px; text-align:right; }
+.total { font-size:11px; color:var(--tx3); white-space:nowrap; }
+.act { font-size:12.5px; color:var(--tx2); background:var(--card2); border-radius:8px; padding:8px 10px; margin-top:auto; }
+.card-bottom { margin-top:2px; }
+.confbar { height:5px; background:#0d1526; border-radius:3px; margin-top:8px; overflow:hidden; }
+.confbar-fill { height:100%; background:var(--green); border-radius:3px; }
+.sum.conf .v { color:var(--green); }
+.act b { color:var(--green); }
+.na { color:var(--tx3); }
+.owner-row { display:flex; gap:8px; align-items:center; }
+.owner { font-size:11px; font-weight:700; border-radius:6px; padding:2px 8px; }
+.owner.dev { background:#7c3aed22; color:#a78bfa; border:1px solid #7c3aed66; }
+.owner.ops { background:#05966922; color:#34d399; border:1px solid #05966966; }
+.owner.both { background:#d9770622; color:#fbbf24; border:1px solid #d9770666; }
+.owner.none { background:#64748b22; color:#94a3b8; border:1px solid #64748b66; }
+.ostate { font-size:10.5px; color:var(--tx3); }
+.num-link { cursor:pointer; text-decoration:underline dotted; text-underline-offset:4px; }
+.num-link:hover { opacity:.8; }
+.sd-mask { display:none; position:fixed; inset:0; background:rgba(2,6,18,.75); z-index:999; align-items:center; justify-content:center; padding:20px; }
+.sd-mask.open { display:flex; }
+.sd-modal { background:var(--panel); border:1px solid var(--line); border-radius:14px; width:min(900px,95vw); max-height:85vh; display:flex; flex-direction:column; overflow:hidden; }
+.sd-head { display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--line); }
+.sd-head b { font-size:15px; }
+.sd-sum { font-size:12px; color:var(--tx2); margin-left:10px; }
+.sd-close { cursor:pointer; color:var(--tx2); font-size:16px; padding:4px 8px; }
+.sd-close:hover { color:var(--tx); }
+.sd-body { overflow-y:auto; flex:1; padding:16px 20px; display:flex; flex-direction:column; gap:12px; }
+.sd-note { font-size:12.5px; color:var(--tx2); }
+.sd-table { width:100%; border-collapse:collapse; font-size:12.5px; }
+.sd-table th { text-align:left; color:var(--tx3); font-weight:600; padding:8px 6px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--panel); }
+.sd-table td { padding:6px; border-bottom:1px solid #1a2540; color:var(--tx2); }
+.sd-table td:first-child { color:var(--red); font-weight:700; }
+.sd-table td { vertical-align:top; }
+.sd-dist td:first-child { color:var(--yellow); text-align:center; }
+.sd-sub { font-size:11.5px; color:var(--tx3); font-weight:400; margin-top:3px; }
+.sd-fix { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-size:12.5px; color:var(--tx2); line-height:1.8; }
+.sd-fix b { color:var(--green); }
+.bl-row { cursor:pointer; }
+.bl-row:hover td { color:var(--tx); }
+.bl-row td:first-child b { text-decoration:underline dotted; text-underline-offset:3px; }
+.bl-detail { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px; max-height:340px; overflow-y:auto; }
+.bl-detail-head { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.bl-back { background:var(--panel); border:1px solid var(--line); color:var(--tx2); border-radius:6px; padding:4px 12px; cursor:pointer; font-size:12px; }
+.bl-back:hover { color:var(--tx); border-color:#3b82f6; }
+#bl-detail-title { font-size:13px; font-weight:600; }
+.bl-detail td.mono { word-break:break-all; font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--tx2); }
+.bl-detail td { vertical-align:top; font-size:11.5px; }
+.page-cell b { color:var(--tx); }
+.legend { display:flex; gap:12px; flex-wrap:wrap; align-items:center; font-size:12px; color:var(--tx2); margin-bottom:20px; }
+details.passed { margin-top:10px; }
+details.passed summary { cursor:pointer; font-size:15px; font-weight:600; color:var(--green); margin-bottom:10px; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; }
+.chip { background:var(--panel); border:1px solid var(--line); color:var(--tx2); border-radius:20px; padding:3px 12px; font-size:11.5px; }
+.note { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 16px; font-size:13px; color:var(--tx2); margin-bottom:24px; line-height:1.9; }
+.note b { color:var(--tx); }
+footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🦾 mepsking.shop SEO 问题优先级报告</h1>
+<div class="sub">数据来源：<b>issues 总览表</b>（站点审计导出 2026-08-28）· 共检查 <b>101</b> 项 · 发现问题 <b>49</b> 项 · 通过 <b>52</b> 项 · 首次审计（无历史对比）</div>
+
+<div class="legend">
+<span><b>分工图例：</b></span>
+<span class="owner dev">产研</span> 模板/代码级
+<span class="owner ops">运营</span> 内容/文案级
+<span class="owner both">产研+运营</span> 需协作
+<span class="owner none">无需处理</span> 正常现象
+<span style="color:var(--tx3)">「待确认」= 初步建议，等你逐项拍板</span>
+</div>
+<div class="note"><b>读法说明：</b>数字 = 触发该问题的次数（不一定是页面数，如“结构化数据标记错误 33,853”是条目数）；百分比 = 失败数 ÷ 该项检查总数；优先级综合考虑「对收录/排名的影响 × 规模 × 修复成本」。</div>
+
+<div class="sumgrid">
+  <div class="sum"><div class="v">49</div><div class="l">发现问题总数</div></div>
+  <div class="sum p0"><div class="v">7</div><div class="l">🔴 P0 紧急</div></div>
+  <div class="sum p1"><div class="v">16</div><div class="l">🟠 P1 高优先</div></div>
+  <div class="sum p2"><div class="v">15</div><div class="l">🟡 P2 中等</div></div>
+  <div class="sum p3"><div class="v">10</div><div class="l">🔵 P3 低/参考</div></div>
+  <div class="sum ok"><div class="v">52</div><div class="l">✅ 通过项</div></div>
+  <div class="sum conf"><div class="v">8/49</div><div class="l">🧑‍💼 分工已确认</div>
+    <div class="confbar"><div class="confbar-fill" style="width:16%"></div></div>
+  </div>
+</div>
+
+
+<section class="pri" id="P0">
+  <div class="pri-head">
+    <h3>🔴 P0 紧急</h3>
+    <span class="pri-count">7 项</span>
+    <span class="pri-desc">直接伤害收录、排名或用户体验，建议 1~2 周内处理</span>
+  </div>
+  <div class="cards"><div class="p0group"><b>🔧 结构化数据问题</b><span>根因：JSON-LD 模板字段问题（inLanguage 非法 + WebSite 缺 name）</span></div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">结构化数据标记错误</span>
+        <span class="num num-link" onclick="openSDModal()" title="点击查看问题类型汇总">33,853</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">✅ 已确认</span></div>
+      <div class="en">Structured data that contains markup errors</div>
+      <p class="why">33,853 条错误 = 两类（2026-08-28 线上源码抽样验证）：① inLanguage 非法属性——商品页 ProductGroup 及变体带该字段，Schema.org 不识别，4,841 页、33,851 条（99.99%）；② 首页 WebSite 块缺 name，Google 站点名称功能无法展示，2 条。点击数字可查看汇总。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill mid" style="width:14.6%"></div></div><span class="pct">14.6%</span></div>
+        <div class="total">检查总数 232,493</div>
+      </div>
+      <div class="act"><b>建议：</b>产研两处模板修改：商品页 ProductGroup 生成逻辑删除所有 inLanguage；首页 WebSite 块补 name 字段。一次迭代全站清零。</div>
+    </div><div class="p0group"><b>🔗 链接路径问题（同一根因）</b><span>导航/页脚/详情中配置了失效或错误路径的链接，坏链、404、500 同源</span></div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">坏的内部链接</span>
+        <span class="num num-link" onclick="openBLModal()" title="点击查看页面类型分布">8,259</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认</span></div>
+      <div class="en">Broken internal links</div>
+      <p class="why">8,259 条 = 8,255 条 404 + 4 条 500，去重后目标仅 62 个。98.4%（8,127 条）是德语站导航/页脚缺失的 3 个链接（/de/blog、/de/explore/join-the-mepsking-pilot-program、/de/brand/emax，各 2,709 次）；其余 132 条为 log/blog 配置错误、非标破折号字符、hubs 路径缺失等零散问题。点击数字查看完整拆解。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:1.2%"></div></div><span class="pct">1.2%</span></div>
+        <div class="total">检查总数 676,578</div>
+      </div>
+      <div class="act"><b>建议：</b>运营补齐德语站 3 个缺失链接消除 98.4%；其余按明细表逐项清理（目标明确、工作量可控）。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">4xx 错误页面</span>
+        <span class="num " >60</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认</span></div>
+      <div class="en">4xx errors</div>
+      <p class="why">60 个页面返回 404 等客户端错误，与「坏的内部链接」同源：8,259 条坏内链指向的就是这 60 个 4xx 页面，它们分布在站内不同页面的导航、页脚和详情配置中。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.7%"></div></div><span class="pct">0.7%</span></div>
+        <div class="total">检查总数 8,122</div>
+      </div>
+      <div class="act"><b>建议：</b>与坏内链一起处理：运营优先调整导航/页脚配置修复大头，剩余逐个确认（有价值 301 重定向，无价值清理指向它的链接）。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">5xx 服务器错误</span>
+        <span class="num " >4</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认</span></div>
+      <div class="en">5xx errors</div>
+      <p class="why">根因已定位：商品详情页（analog-receiver-module-adapter-v3-0-plus.html）中一条内链 URL 配置错误——写成了 log/betaflight-configuration-guide-….html，正确路径是 blog/（同文章名，blog 版实测 200 正常）；因多路径原因裂变成 4 个错误。改这 1 条链接即可解决全部 4 个。（注：该错误链接实测当前返回 404，审计时可能为 5xx，建议修复后重跑审计确认清零。）</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 8,122</div>
+      </div>
+      <div class="act"><b>建议：</b>运营修复该商品详情中的链接配置：log/ → blog/（URL 是运营配置的，改这一条即可）。</div>
+    </div><div class="p0group"><b>📄 多路径重复问题（同一根因）</b><span>同一页面存在多个 URL 路径，导致 Title / Meta 描述 / 内容重复，随去除多路径迭代一并解决</span></div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">Meta 描述重复</span>
+        <span class="num " >1,768</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">✅ 已确认</span></div>
+      <div class="en">Duplicate meta descriptions</div>
+      <p class="why">1,768 处重复，主要原因是多路径页面（同一页面多个 URL 路径）各自生成了相同描述。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 18,030,630</div>
+      </div>
+      <div class="act"><b>建议：</b>已确认迭代：去除多路径 URL 后，问题同步解决。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">Title 标签重复</span>
+        <span class="num " >1,607</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">✅ 已确认</span></div>
+      <div class="en">Duplicate title tag</div>
+      <p class="why">1,607 处重复，与 Meta 描述重复同因：多路径页面（同一页面多个 URL 路径）生成了相同 Title。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 18,022,798</div>
+      </div>
+      <div class="act"><b>建议：</b>与 Meta 描述重复一起，随去除多路径 URL 的迭代同步解决。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">页面内容重复</span>
+        <span class="num " >1,465</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">✅ 已确认</span></div>
+      <div class="en">Duplicate content</div>
+      <p class="why">1,465 处内容重复页面，与 Title / Meta 描述重复同因：多路径页面（同一页面多个 URL 路径）产生重复内容。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:1.2%"></div></div><span class="pct">1.2%</span></div>
+        <div class="total">检查总数 122,736</div>
+      </div>
+      <div class="act"><b>建议：</b>产研同一迭代版本去除多路径 URL 后，跟随解决。</div>
+    </div></div></section>
+<section class="pri" id="P1">
+  <div class="pri-head">
+    <h3>🟠 P1 高优先</h3>
+    <span class="pri-count">16 项</span>
+    <span class="pri-desc">影响爬取效率、权重传递或页面质量，建议 1 个月内排期</span>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">页面爬取深度过深</span>
+        <span class="num " >4,315</span>
+      </div>
+      <div class="owner-row"><span class="owner both">产研+运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Page crawl depth</div>
+      <p class="why">4,315 个页面需要 3 次以上点击才能到达，收录和权重都会打折。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill high" style="width:54.8%"></div></div><span class="pct">54.8%</span></div>
+        <div class="total">检查总数 7,872</div>
+      </div>
+      <div class="act"><b>建议：</b>加强内链结构，与内链优化专项直接相关（首页/分类页增加入口）。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">H1 与 Title 内容重复</span>
+        <span class="num " >2,259</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Duplicate content in h1 and title</div>
+      <p class="why">2,259 个页面 H1 和 Title 完全一样。通常模板如此设计，Google 不会惩罚，属轻微问题。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill mid" style="width:30.6%"></div></div><span class="pct">30.6%</span></div>
+        <div class="total">检查总数 7,380</div>
+      </div>
+      <div class="act"><b>建议：</b>若模板如此可接受；有余力可让 H1 与 Title 略有差异。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">仅 1 条内链指向的页面</span>
+        <span class="num " >1,174</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Pages with only one internal link</div>
+      <p class="why">1,174 个页面内链支持薄弱。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill mid" style="width:15.1%"></div></div><span class="pct">15.1%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>在相关分类页、博客文章中补充指向这些页面的链接。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">孤立页面（在 sitemap 但无内链）</span>
+        <span class="num " >781</span>
+      </div>
+      <div class="owner-row"><span class="owner both">产研+运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Orphaned sitemap pages</div>
+      <p class="why">781 个页面只能靠 sitemap 发现，没有任何内链指向。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill mid" style="width:20.7%"></div></div><span class="pct">20.7%</span></div>
+        <div class="total">检查总数 3,781</div>
+      </div>
+      <div class="act"><b>建议：</b>补充内链入口，或确认这些页面是否还需要存在。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">缺少 H1 标签</span>
+        <span class="num " >405</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Missing h1</div>
+      <p class="why">405 个页面没有 H1，页面主题信号缺失。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:5.2%"></div></div><span class="pct">5.2%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>检查模板，确保每个页面有且只有一个语义化 H1。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">站内链接指向 HTTP 版本</span>
+        <span class="num " >265</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Links lead to HTTP pages for HTTPS site</div>
+      <p class="why">265 条链接仍指向 http://，造成不必要的重定向和权重损耗。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 661,119</div>
+      </div>
+      <div class="act"><b>建议：</b>全站模板把内链协议统一改为 https。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">Title 过短</span>
+        <span class="num " >247</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Title element is too short</div>
+      <p class="why">247 个页面 Title 太短，没充分利用关键词空间。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:3.2%"></div></div><span class="pct">3.2%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>结合搜索意图补充关键词与卖点词。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">被禁止爬取</span>
+        <span class="num " >242</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Blocked from crawling</div>
+      <p class="why">242 个页面被 robots 或 noindex 屏蔽。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:3.0%"></div></div><span class="pct">3.0%</span></div>
+        <div class="total">检查总数 8,027</div>
+      </div>
+      <div class="act"><b>建议：</b>逐一确认是否刻意屏蔽；若误屏蔽重要页面需立即放开。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">Title 过长</span>
+        <span class="num " >103</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Title element is too long</div>
+      <p class="why">103 个页面 Title 超出建议长度，搜索结果会被截断。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:1.3%"></div></div><span class="pct">1.3%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>精简文案，核心关键词前置。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">页面加载过慢</span>
+        <span class="num " >67</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Slow page load speed</div>
+      <p class="why">67 个页面加载时间超标，影响体验与核心指标。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.9%"></div></div><span class="pct">0.9%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>结合 pages 明细表定位慢页面，优先压缩图片/精简资源。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">缺少 Meta 描述</span>
+        <span class="num " >43</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Missing meta description</div>
+      <p class="why">43 个页面没有 Meta 描述，搜索结果里会随机截取页面文字。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.6%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>补写带关键词的描述，优先有流量的页面。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">Canonical 指向失效</span>
+        <span class="num " >30</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Broken canonical URLs</div>
+      <p class="why">30 个页面的 canonical 指向不存在或不可访问的 URL，直接影响收录判断。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.4%</span></div>
+        <div class="total">检查总数 7,781</div>
+      </div>
+      <div class="act"><b>建议：</b>数量不多，建议尽快逐个修正。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">hreflang 链接错误</span>
+        <span class="num " >26</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Issues with incorrect hreflang links</div>
+      <p class="why">26 处 hreflang 指向错误。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.2%</span></div>
+        <div class="total">检查总数 14,170</div>
+      </div>
+      <div class="act"><b>建议：</b>站点如不做多语言可直接移除 hreflang；做多语言则修正指向。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">hreflang 源码内冲突</span>
+        <span class="num " >22</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Hreflang conflicts within page source code</div>
+      <p class="why">22 处同一页面源码中 hreflang 互相冲突。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.1%</span></div>
+        <div class="total">检查总数 16,323</div>
+      </div>
+      <div class="act"><b>建议：</b>同上，统一 hreflang 策略。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">sitemap 中包含错误页面</span>
+        <span class="num " >6</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Incorrect pages found in sitemap.xml</div>
+      <p class="why">6 个不该进 sitemap 的页面混在里面（如重定向/错误页）。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.2%</span></div>
+        <div class="total">检查总数 2,996</div>
+      </div>
+      <div class="act"><b>建议：</b>从 sitemap 中剔除，保持 sitemap 只含规范可索引页面。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">Title 缺失或为空</span>
+        <span class="num " >2</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Title tag is missing or empty</div>
+      <p class="why">2 个页面没有 Title，属于硬伤。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>立即定位补上。</div>
+    </div></div></section>
+<section class="pri" id="P2">
+  <div class="pri-head">
+    <h3>🟡 P2 中等</h3>
+    <span class="pri-count">15 项</span>
+    <span class="pri-desc">主要是性能与细节质量问题，可随版本迭代逐步优化</span>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">JS/CSS 未压缩</span>
+        <span class="num " >39,518</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Unminified JavaScript and CSS files</div>
+      <p class="why">39,518 个资源未压缩，拖累加载速度（纯性能问题，不影响收录判断）。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill mid" style="width:10.2%"></div></div><span class="pct">10.2%</span></div>
+        <div class="total">检查总数 386,702</div>
+      </div>
+      <div class="act"><b>建议：</b>构建流程开启 minify，一次性全局解决。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">链接缺少锚文本</span>
+        <span class="num " >26,004</span>
+      </div>
+      <div class="owner-row"><span class="owner both">产研+运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Links with no anchor text</div>
+      <p class="why">26,004 条链接没有锚文本（多为图标/图片链接）。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:6.0%"></div></div><span class="pct">6.0%</span></div>
+        <div class="total">检查总数 430,390</div>
+      </div>
+      <div class="act"><b>建议：</b>给重要链接补描述性锚文本，纯图标链接可加 title/aria-label。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">资源被写成页面链接形式</span>
+        <span class="num " >518</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Resources formatted as page links</div>
+      <p class="why">518 处资源（图片/文件）以页面链接方式引用，可能干扰爬取。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.1%</span></div>
+        <div class="total">检查总数 725,036</div>
+      </div>
+      <div class="act"><b>建议：</b>检查模板中的资源引用写法。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">JS/CSS 未设置缓存</span>
+        <span class="num " >369</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Uncached JavaScript and CSS files</div>
+      <p class="why">369 个静态资源没有缓存头，重复访问重复下载。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.1%</span></div>
+        <div class="total">检查总数 386,702</div>
+      </div>
+      <div class="act"><b>建议：</b>给静态资源配置长缓存（注意配合文件名哈希）。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">外链图片失效</span>
+        <span class="num " >171</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Broken external images</div>
+      <p class="why">171 个引用的外部图片失效。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 1,011,458</div>
+      </div>
+      <div class="act"><b>建议：</b>替换或移除，优先处理商品/内容页上的。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">外部 JS/CSS 失效</span>
+        <span class="num " >160</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Broken external JavaScript and CSS files</div>
+      <p class="why">160 个外部脚本/样式加载失败，可能影响页面功能。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 360,480</div>
+      </div>
+      <div class="act"><b>建议：</b>排查失效的第三方资源，更换或移除。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">内容未充分优化</span>
+        <span class="num " >123</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Content not optimized</div>
+      <p class="why">123 个页面内容优化不足（篇幅/关键词覆盖等）。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:1.6%"></div></div><span class="pct">1.6%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>结合关键词规划逐步优化，优先有流量潜力的页面。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">外部资源被 robots 禁止</span>
+        <span class="num " >120</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Disallowed external resources</div>
+      <p class="why">120 个外部资源被对方 robots 屏蔽抓取。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 866,240</div>
+      </div>
+      <div class="act"><b>建议：</b>一般影响不大，留意是否影响页面渲染。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">图片缺少 ALT</span>
+        <span class="num " >119</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Missing ALT attributes</div>
+      <p class="why">119 张图片缺 ALT，损失图片搜索流量与可访问性。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 525,245</div>
+      </div>
+      <div class="act"><b>建议：</b>给商品图/内容图补描述性 ALT。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">hreflang 语言不匹配</span>
+        <span class="num " >96</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Hreflang language mismatch issues</div>
+      <p class="why">96 处语言标记与实际不符。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:1.8%"></div></div><span class="pct">1.8%</span></div>
+        <div class="total">检查总数 5,419</div>
+      </div>
+      <div class="act"><b>建议：</b>与上面 hreflang 问题一并处理（或整体移除）。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">多个 H1 标签</span>
+        <span class="num " >50</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Multiple h1 tags</div>
+      <p class="why">50 个页面出现多个 H1，主题信号分散。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.7%"></div></div><span class="pct">0.7%</span></div>
+        <div class="total">检查总数 7,380</div>
+      </div>
+      <div class="act"><b>建议：</b>模板改为单 H1。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">页面文字过少</span>
+        <span class="num " >28</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Low word count</div>
+      <p class="why">28 个页面正文内容太少，竞争力弱。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.4%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>补充有价值的描述/参数/场景内容。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">外链失效</span>
+        <span class="num " >27</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Broken external links</div>
+      <p class="why">27 条外部链接失效。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.2%</span></div>
+        <div class="total">检查总数 16,650</div>
+      </div>
+      <div class="act"><b>建议：</b>替换为有效链接或移除。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">临时重定向（302）</span>
+        <span class="num " >7</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Temporary redirects</div>
+      <p class="why">7 处用了临时重定向。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 1,593,981</div>
+      </div>
+      <div class="act"><b>建议：</b>若是长期跳转应改为 301。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">格式错误的链接</span>
+        <span class="num " >5</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Malformed links</div>
+      <p class="why">5 条链接 URL 格式非法。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 737,498</div>
+      </div>
+      <div class="act"><b>建议：</b>定位修正，数量少可逐个处理。</div>
+    </div></div></section>
+<section class="pri" id="P3">
+  <div class="pri-head">
+    <h3>🔵 P3 低 / 仅参考</h3>
+    <span class="pri-count">10 项</span>
+    <span class="pri-desc">影响极小或属正常现象，知晓即可，不必专门投入</span>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">文字/HTML 比例过低</span>
+        <span class="num " >7,706</span>
+      </div>
+      <div class="owner-row"><span class="owner none">无需处理</span><span class="ostate">待确认</span></div>
+      <div class="en">Low text to HTML ratio</div>
+      <p class="why">7,706 个页面（几乎全站）文字占比低——电商站普遍现象，Google 不会因此惩罚，仅作参考。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill high" style="width:99.0%"></div></div><span class="pct">99.0%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>不必专门处理；可在重点页面适当增加描述性文字。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">永久重定向（301）</span>
+        <span class="num " >903</span>
+      </div>
+      <div class="owner-row"><span class="owner none">无需处理</span><span class="ostate">待确认</span></div>
+      <div class="en">Permanent redirects</div>
+      <p class="why">903 条 301 重定向，属正常现象。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.1%</span></div>
+        <div class="total">检查总数 1,593,981</div>
+      </div>
+      <div class="act"><b>建议：</b>只要没有重定向链（A→B→C）就不用管。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">外链带 nofollow</span>
+        <span class="num " >407</span>
+      </div>
+      <div class="owner-row"><span class="owner none">无需处理</span><span class="ostate">待确认</span></div>
+      <div class="en">Nofollow attributes in external links</div>
+      <p class="why">407 条外链带 nofollow，通常是刻意设置，无需处理。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.6%</span></div>
+        <div class="total">检查总数 63,400</div>
+      </div>
+      <div class="act"><b>建议：</b>确认即可。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">URL 中使用下划线</span>
+        <span class="num " >13</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Underscores in URL</div>
+      <p class="why">13 个 URL 用了下划线而非连字符，影响极小。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.2%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>有改版机会再处理。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">语义化 HTML 使用不足</span>
+        <span class="num " >11</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Low Semantic HTML usage</div>
+      <p class="why">11 个页面语义化标签用得少。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.1%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>改版时顺手优化。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">锚文本无描述性</span>
+        <span class="num " >6</span>
+      </div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="en">Links with non-descriptive anchor text</div>
+      <p class="why">6 条链接锚文本无意义（如“点击这里”）。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 422,178</div>
+      </div>
+      <div class="act"><b>建议：</b>顺手改成描述性锚文本。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">缺少 llms.txt</span>
+        <span class="num " >1</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Llms.txt not found</div>
+      <p class="why">1 处——站点没有 llms.txt。这是面向 AI 助手的可选文件，不影响传统 SEO。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill high" style="width:100.0%"></div></div><span class="pct">100.0%</span></div>
+        <div class="total">检查总数 1</div>
+      </div>
+      <div class="act"><b>建议：</b>可选：想提升 AI 引用友好度再配置。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">URL 过长</span>
+        <span class="num " >1</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">Too long URLs</div>
+      <p class="why">1 个页面 URL 过长。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 7,785</div>
+      </div>
+      <div class="act"><b>建议：</b>定位看一下，影响很小。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">未启用 HSTS</span>
+        <span class="num " >1</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="en">No HSTS support</div>
+      <p class="why">HTTPS 安全增强项，对 SEO 无直接影响。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill high" style="width:50.0%"></div></div><span class="pct">50.0%</span></div>
+        <div class="total">检查总数 2</div>
+      </div>
+      <div class="act"><b>建议：</b>可选优化。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">外部资源返回 403</span>
+        <span class="num " >1</span>
+      </div>
+      <div class="owner-row"><span class="owner none">无需处理</span><span class="ostate">待确认</span></div>
+      <div class="en">External pages or resources with 403 HTTP status code</div>
+      <p class="why">1 个外部资源被对方拒绝访问。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
+        <div class="total">检查总数 882,762</div>
+      </div>
+      <div class="act"><b>建议：</b>影响可忽略。</div>
+    </div></div></section>
+<section class="pri" id="NA">
+  <div class="pri-head">
+    <h3>✅ 无需处理（已核实确认）</h3>
+    <span class="pri-count">1 项</span>
+    <span class="pri-desc">经逐项核实属于正常现象或无实际影响，不计入修复工作量</span>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">内链被标记 nofollow</span>
+        <span class="num">4,875</span>
+      </div>
+      <div class="owner-row"><span class="owner none">无需处理</span><span class="ostate">✅ 已确认</span></div>
+      <div class="en">Nofollow attributes in internal links</div>
+      <p class="why">4,875 条，来源页全部来自 blog（3,132 条 / 64.2%）和 explore 资讯站（1,743 条 / 35.8%），主站商品/分类页为 0（2026-08-28 明细表全量核实）。① blog：文章卡片图片链接加了 nofollow，同卡片标题链接为正常 follow，权重入口未丢；② explore：1,743 篇文章页各 1 条评论「取消回复」链接，锚点链接+默认隐藏，nofollow 是 WordPress 核心代码标准行为。两类均经用户现场确认。</p>
+      <div class="act"><b>结论：</b>无需处理：不存在「某链接被 nofollow 且页面无其他 follow 链接指向同一目标」的断链情况。</div>
+    </div></div></section>
+
+<details class="passed">
+<summary>✅ 通过的 52 项检查（点击展开）</summary>
+<div class="chips"><span class="chip">Pages not crawled</span><span class="chip">DNS resolution issue</span><span class="chip">We couldn&#x27;t open the page?s URL</span><span class="chip">Broken internal images</span><span class="chip">Invalid robots.txt format</span><span class="chip">Invalid sitemap.xml format</span><span class="chip">www resolve issues</span><span class="chip">Viewport not configured</span><span class="chip">Large HTML page size</span><span class="chip">Missing canonical tags in AMP pages</span><span class="chip">Issues with hreflang values</span><span class="chip">Non-secure pages</span><span class="chip">Certificate Expiration</span><span class="chip">Old security protocol version</span><span class="chip">Certificate registered to incorrect name</span><span class="chip">Issues with mixed content</span><span class="chip">Neither canonical URL nor 301 redirect from HTTP homepage</span><span class="chip">Redirect chains and loops</span><span class="chip">AMP Pages with HTML Issues</span><span class="chip">AMP Pages with Style and Layout Issues</span><span class="chip">AMP Pages with Templating Issues</span><span class="chip">Multiple canonical URLs</span><span class="chip">Meta refresh redirects</span><span class="chip">Broken internal JavaScript and CSS files</span><span class="chip">Insecure encryption algorithms</span><span class="chip">Sitemap file too large</span><span class="chip">Viewport width not set</span><span class="chip">Too many on-page links</span><span class="chip">Too many URL parameters</span><span class="chip">Missing hreflang and lang attributes</span><span class="chip">Encoding not declared</span><span class="chip">Doctype not declared</span><span class="chip">Incompatible plugins used</span><span class="chip">Frames used</span><span class="chip">Sitemap.xml not specified in robots.txt</span><span class="chip">Sitemap.xml not found</span><span class="chip">HTTPS encryption not used</span><span class="chip">No SNI support</span><span class="chip">HTTP URLs in sitemap.xml for HTTPS site</span><span class="chip">Uncompressed pages</span><span class="chip">Disallowed internal resources</span><span class="chip">Uncompressed JavaScript and CSS files</span><span class="chip">Too large JavaScript and CSS total size</span><span class="chip">Too many JavaScript and CSS files</span><span class="chip">Warning - Too long URLs</span><span class="chip">Robots.txt not found</span><span class="chip">Orphaned pages (Google Analytics)</span><span class="chip">Pages have high Document Interactive Time</span><span class="chip">Blocked by X-Robots-Tag: noindex HTTP header</span><span class="chip">Llms.txt has formatting issues</span><span class="chip">Too much content</span><span class="chip">Outdated content</span></div>
+</details>
+
+<footer>由 Jarvis 生成 · 2026-08-28 · 仅基于 issues 总览表；逐页明细可结合 mega_export / pages / structured_data 表深入定位</footer>
+</div>
+
+
+<div id="sd-mask" class="sd-mask" onclick="closeSDModal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>结构化数据标记错误 · 问题类型汇总</b>
+      <span class="sd-close" onclick="closeSDModal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">33,853 条错误 = 两类问题。均已在 2026-08-28 线上源码抽样验证。</div>
+      <table class="sd-table">
+        <thead><tr><th>问题类型</th><th style="width:90px">页面数</th><th style="width:90px">错误数</th><th style="width:70px">占比</th></tr></thead>
+        <tbody>
+          <tr><td><b>inLanguage 字段非法</b><div class="sd-sub">商品页 ProductGroup 及其 Product 变体带 inLanguage 属性，不是 Schema.org 合法字段。错误数 = 1（顶层）+ 2×变体数，与抽样逐页吻合。</div></td><td>4,841</td><td>33,851</td><td>99.99%</td></tr>
+          <tr><td><b>Site names 缺 name</b><div class="sd-sub">首页 WebSite JSON-LD 块缺少 name 字段（OnlineStore 块的 name 不被识别为站点名）。</div></td><td>1</td><td>2</td><td>0.01%</td></tr>
+        </tbody>
+      </table>
+      <div class="sd-note">inLanguage 错误按商品变体数分布（每页错误数 = 1 + 2×变体数）：</div>
+      <table class="sd-table sd-dist">
+        <thead><tr><th>变体数</th><th style="width:110px">页面数</th><th style="width:120px">错误数</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>2,049</td><td>6,147</td></tr>
+          <tr><td>2</td><td>869</td><td>4,345</td></tr>
+          <tr><td>3</td><td>619</td><td>4,333</td></tr>
+          <tr><td>4</td><td>520</td><td>4,680</td></tr>
+          <tr><td>5~7</td><td>336</td><td>4,290</td></tr>
+          <tr><td>8~10</td><td>197</td><td>3,437</td></tr>
+          <tr><td>12~16</td><td>251</td><td>6,619</td></tr>
+        </tbody>
+      </table>
+      <div class="sd-fix"><b>修复方式（产研，改模板一次全站生效）：</b>商品页 ProductGroup 生成逻辑删除所有 inLanguage 字段；首页 WebSite 块补 "name":"MEPSKING"。预计清零全部 33,853 条。</div>
+    </div>
+  </div>
+</div>
+
+<div id="bl-mask" class="sd-mask" onclick="closeBLModal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>坏的内部链接 · 明细拆解（8,259 条）</b>
+      <span class="sd-close" onclick="closeBLModal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">基于 internal_broken_links 明细表全量统计：8,259 条 = 8,255 条 404 + 4 条 500。多路径（同一商详的不同路径）合并后，除组①外只需处理 <b>33 个实际页面</b>（已按商详/博客/分类页标注类型）。点击问题组查看明细：</div>
+      <table class="sd-table">
+        <thead><tr><th>问题组</th><th style="width:90px">条数</th><th style="width:70px">占比</th><th style="width:80px">分工</th></tr></thead>
+        <tbody>
+          <tr class="bl-row" onclick="blShow(1)"><td><b>① 德语站导航/页脚缺失 3 个链接</b><div class="sd-sub">/de/blog · /de/explore/join-the-mepsking-pilot-program · /de/brand/emax，各出现 2,709 次（每个德语站页面带这 3 条坏链）。补齐这 3 个德语链接即消除。</div></td><td>8,127</td><td>98.4%</td><td>运营</td></tr>
+          <tr class="bl-row" onclick="blShow(2)"><td><b>② log/ → blog/ 链接配置错误</b><div class="sd-sub">1 个商详（analog-receiver-module）里把博客链接 blog/ 写成 log/，因多路径被爬虫爬成 6 条（含 4 条 500，即 5xx 问题的同一根因）。<b>只需改这 1 个商详。</b></div></td><td>6</td><td>0.1%</td><td>运营</td></tr>
+          <tr class="bl-row" onclick="blShow(3)"><td><b>③ URL 中的非标破折号字符</b><div class="sd-sub">1 个商详（iflight-blitz-mini-f722）里 3 个链接用了全角破折号（‑）而非普通连字符（-），多路径裂变成 9 条。<b>只需改这 1 个商详。</b></div></td><td>9</td><td>0.1%</td><td>运营</td></tr>
+          <tr class="bl-row" onclick="blShow(4)"><td><b>④ aerial-creators / beginners 路径缺失</b><div class="sd-sub">hubs 页商品链接写成 /aerial-creators/xxx（实际需 /de/hubs/users/... 等完整路径）；多路径合并后 <b>15 个实际页面</b>（hubs 专题页，43 条）。</div></td><td>43</td><td>0.5%</td><td>待确认</td></tr>
+          <tr class="bl-row" onclick="blShow(5)"><td><b>⑤ 其他零散死链</b><div class="sd-sub">多路径合并后 <b>16 个实际页面</b>（74 条，含商详/博客/分类页，已标注类型），最多的是 blitz-mini-atf-435-stack 商详（11 条路径、3 个坏链目标）；另有分类页/博客老链接。</div></td><td>74</td><td>0.9%</td><td>运营</td></tr>
+        </tbody>
+      </table>
+      <div id="bl-detail" class="bl-detail" style="display:none">
+        <div class="bl-detail-head">
+          <button class="bl-back" onclick="blHide()">‹ 返回汇总</button>
+          <span id="bl-detail-title"></span>
+        </div>
+        <table class="sd-table">
+          <thead id="bl-detail-head-row"><tr><th style="width:90px">来源页</th><th style="width:60px">状态码</th><th>坏链目标 URL</th></tr></thead>
+          <tbody id="bl-detail-body"></tbody>
+        </table>
+      </div>
+      <div class="sd-fix"><b>修复方式：</b>① 运营补齐德语站导航/页脚的 3 个德语链接，一次消除 98.4%；②③⑤ 运营修正对应配置/内容（零散但目标明确）；④ 建议确认 hubs 页商品链接的正确路径规则后统一修正。全部目标仅 62 个，工作量可控。</div>
+    </div>
+  </div>
+</div>
+<script>
+var BL_DATA = {"1": [{"target": "https://www.mepsking.shop/de/blog", "count": 2709}, {"target": "https://www.mepsking.shop/de/explore/join-the-mepsking-pilot-program", "count": 2709}, {"target": "https://www.mepsking.shop/de/brand/emax", "count": 2709}], "2": [{"page": "analog-receiver-module-adapter-v3-0-plus.html", "kind": "商品详情", "paths": 6, "records": 6, "targets": [{"target": "https://www.mepsking.shop/log/betaflight-configuration-guide-setup-for-vtx-and-radio-controller-channels.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/drone-parts/accessories/log/betaflight-configuration-guide-setup-for-vtx-and-radio-controller-channels.html", "count": 1, "code": "500"}, {"target": "https://www.mepsking.shop/drone-parts/log/betaflight-configuration-guide-setup-for-vtx-and-radio-controller-channels.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/tags/analog/log/betaflight-configuration-guide-setup-for-vtx-and-radio-controller-channels.html", "count": 1, "code": "500"}, {"target": "https://www.mepsking.shop/tags/digital-hd/log/betaflight-configuration-guide-setup-for-vtx-and-radio-controller-channels.html", "count": 1, "code": "500"}, {"target": "https://www.mepsking.shop/tags/hd-fpv-goggles/log/betaflight-configuration-guide-setup-for-vtx-and-radio-controller-channels.html", "count": 1, "code": "500"}]}], "3": [{"page": "iflight-blitz-mini-f722-e55s-4-in-1.html", "kind": "商品详情", "paths": 3, "records": 9, "targets": [{"target": "https://www.mepsking.shop/hota‑s6‑ultra‑dual‑channel‑400w‑smart‑battery‑charger.html", "count": 3, "code": "404"}, {"target": "https://www.mepsking.shop/meps‑fireproof‑lipo‑battery‑safety‑bag.html", "count": 3, "code": "404"}, {"target": "https://www.mepsking.shop/miniware‑ts101‑soldering‑iron.html", "count": 3, "code": "404"}]}], "4": [{"page": "hubs/users/aerial-creators/flywoo-4s-3000mah-long-range-battery-p30b.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/aerial-creators/flywoo-4s-3000mah-long-range-battery-p30b.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/aerial-creators/flywoo-4s-3000mah-long-range-battery-p30b.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/aerial-creators/geprc-storm-irt21700-40t-6s2p-8000mah-li-ion-battery.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/aerial-creators/geprc-storm-irt21700-40t-6s2p-8000mah-li-ion-battery.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/aerial-creators/geprc-storm-irt21700-40t-6s2p-8000mah-li-ion-battery.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/aerial-creators/iflight-fullsend-6s-4000mah-li-ion-battery.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/aerial-creators/iflight-fullsend-6s-4000mah-li-ion-battery.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/aerial-creators/iflight-fullsend-6s-4000mah-li-ion-battery.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/aerial-creators/iflight-fullsend-6s-8000mah-li-ion-battery.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/aerial-creators/iflight-fullsend-6s-8000mah-li-ion-battery.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/aerial-creators/iflight-fullsend-6s-8000mah-li-ion-battery.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/aerial-creators/iflight-fullsend-e-6s-6000mah-battery.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/aerial-creators/iflight-fullsend-e-6s-6000mah-battery.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/aerial-creators/iflight-fullsend-e-6s-6000mah-battery.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/aerial-creators/neon-2810-fpv-drone-motor.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/aerial-creators/neon-2810-fpv-drone-motor.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/aerial-creators/neon-2810-fpv-drone-motor.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/aerial-creators/neon-2812-fpv-drone-motor.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/aerial-creators/neon-2812-fpv-drone-motor.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/aerial-creators/neon-2812-fpv-drone-motor.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/aerial-creators/sz2808-fpv-cinematic-motor.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/aerial-creators/sz2808-fpv-cinematic-motor.html", "count": 2, "code": "404"}, {"target": "https://www.mepsking.shop/de/aerial-creators/sz2808-fpv-cinematic-motor.html", "count": 1, "code": "404"}]}, {"page": "hubs/users/aerial-creators/thobby-f90-long-range-motor-x8-2806-5.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/aerial-creators/thobby-f90-long-range-motor-x8-2806-5.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/aerial-creators/thobby-f90-long-range-motor-x8-2806-5.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/aerial-creators/thobby-v70a-f7-se-8s-fpv-4-in-1-stack.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/aerial-creators/thobby-v70a-f7-se-8s-fpv-4-in-1-stack.html", "count": 2, "code": "404"}, {"target": "https://www.mepsking.shop/de/aerial-creators/thobby-v70a-f7-se-8s-fpv-4-in-1-stack.html", "count": 1, "code": "404"}]}, {"page": "hubs/users/beginners/sz1604-fpv-motor.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/beginners/sz1604-fpv-motor.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/beginners/sz1604-fpv-motor.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/beginners/sz2104-fpv-motor.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/beginners/sz2104-fpv-motor.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/beginners/sz2104-fpv-motor.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/beginners/thobby-f7-35a-45a-aio-for-cinewhoop-toothpick.html", "kind": "专题页(hubs)", "paths": 2, "records": 3, "targets": [{"target": "https://www.mepsking.shop/de/beginners/thobby-f7-35a-45a-aio-for-cinewhoop-toothpick.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/beginners/thobby-f7-35a-45a-aio-for-cinewhoop-toothpick.html", "count": 2, "code": "404"}]}, {"page": "hubs/users/aerial-creators", "kind": "专题页(hubs)", "paths": 2, "records": 2, "targets": [{"target": "https://www.mepsking.shop/de/aerial-creators", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/aerial-creators", "count": 1, "code": "404"}]}, {"page": "hubs/users/beginners", "kind": "专题页(hubs)", "paths": 2, "records": 2, "targets": [{"target": "https://www.mepsking.shop/de/beginners", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/beginners", "count": 1, "code": "404"}]}], "5": [{"page": "blitz-mini-atf-435-stack.html", "kind": "商品详情", "paths": 11, "records": 33, "targets": [{"target": "https://www.mepsking.shop/fpv-brushless-motors.html", "count": 11, "code": "404"}, {"target": "https://www.mepsking.shop/iflight-blitz-mini-atf435-stack.html", "count": 11, "code": "404"}, {"target": "https://www.mepsking.shop/iflight-blitz-atf435-stack.html", "count": 11, "code": "404"}]}, {"page": "vifly-whoopstor-3-1s-battery-storage-charger-discharger.html", "kind": "商品详情", "paths": 5, "records": 10, "targets": [{"target": "https://www.mepsking.shop/drone-parts/lipo-batteries", "count": 5, "code": "404"}, {"target": "https://www.mepsking.shop/battery-chargers", "count": 5, "code": "404"}]}, {"page": "/explore", "kind": "分类/专题页", "paths": 3, "records": 6, "targets": [{"target": "https://www.mepsking.shop/blog/how-to-choose-fpv-drone-motor-a-detailed-guide-2024.html", "count": 3, "code": "404"}, {"target": "https://www.mepsking.shop/blog/best-cinewhoop-droneparts-in-2024.html", "count": 3, "code": "404"}]}, {"page": "geprc-hota-d6-pro-325w-15a-1-6s-dual-channel-acdc-smart-charger-w-wi.html", "kind": "商品详情", "paths": 5, "records": 5, "targets": [{"target": "https://www.mepsking.shop/drone-parts/lipo-batteries", "count": 5, "code": "404"}]}, {"page": "blog/what-are-the-parts-of-fpv-drone.html", "kind": "博客页", "paths": 1, "records": 3, "targets": [{"target": "https://www.mepsking.shop/drone-parts/frames", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/drone-parts/cameras-vtx", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/blog/the-best-fpv-goggles-2024-buyers-guide.html", "count": 1, "code": "404"}]}, {"page": "blog/what-are-the-types-of-fpv-drone.html", "kind": "博客页", "paths": 1, "records": 3, "targets": [{"target": "https://www.mepsking.shop/fpv-others/long-range", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/fpv-others/whoop", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/fpv-racing/kits", "count": 1, "code": "404"}]}, {"page": "/drone-parts/goggles", "kind": "分类/专题页", "paths": 3, "records": 3, "targets": [{"target": "https://www.mepsking.shop/blog/the-best-fpv-goggles-2024-buyers-guide.html", "count": 3, "code": "404"}]}, {"page": "blog/best-5-inch-racing-freestyle-fpv-drone-kit-recommendations-in-2025.html", "kind": "博客页", "paths": 1, "records": 2, "targets": [{"target": "https://www.mepsking.shop/fpv-racing/kits/5-racing-quadcopter-kits.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/5-freestyle-quadcopter-kits.html", "count": 1, "code": "404"}]}, {"page": "radiomaster-tx16s-mark-ii-max-radio-controller-m2.html", "kind": "商品详情", "paths": 1, "records": 2, "targets": [{"target": "https://www.mepsking.shop/receivers-radio-controller/tx16s-mk3-radio-controller-elrs-m2.html", "count": 1, "code": "404"}, {"target": "https://www.mepsking.shop/radiomaster-18650-3200mah-1s-37v-li-ion-battery.html", "count": 1, "code": "404"}]}, {"page": "blog/best-5-inch-cinematic-fpv-drone-build.html", "kind": "博客页", "paths": 1, "records": 1, "targets": [{"target": "https://www.mepsking.shop/blog/best-cinewhoop-droneparts-in-2024.html", "count": 1, "code": "404"}]}, {"page": "blog/best-cinewhoop-drone-parts.html", "kind": "博客页", "paths": 1, "records": 1, "targets": [{"target": "https://www.mepsking.shop/drone-parts/batteries/tattu-r-line-version-5-1050mah-6s-14-8v-150c-lipo-battery-with-xt60-plug.html", "count": 1, "code": "404"}]}, {"page": "blog/capture-cherry-blossom-footage-with-fpv-drones.html", "kind": "博客页", "paths": 1, "records": 1, "targets": [{"target": "https://www.mepsking.shop/explorer-lr-dji-frame-kit.html", "count": 1, "code": "404"}]}, {"page": "blog/fpv-drone-beginners-guide.html", "kind": "博客页", "paths": 1, "records": 1, "targets": [{"target": "https://www.mepsking.shop/drone-parts/cameras-vtx", "count": 1, "code": "404"}]}, {"page": "blog/from-beginner-to-pro-tips-for-mastering-fpv-drone-flying.html", "kind": "博客页", "paths": 1, "records": 1, "targets": [{"target": "https://www.mepsking.shop/blog/the-best-fpv-goggles-2024-buyers-guide.html", "count": 1, "code": "404"}]}, {"page": "blog/how-to-choose-fpv-drone-motor.html", "kind": "博客页", "paths": 1, "records": 1, "targets": [{"target": "https://www.mepsking.shop/drone-parts/cameras-vtx", "count": 1, "code": "404"}]}, {"page": "blog/review-speedybee-f405-aio-40a.html", "kind": "博客页", "paths": 1, "records": 1, "targets": [{"target": "https://www.mepsking.shop/drone-parts/aio", "count": 1, "code": "404"}]}]};
+var BL_TITLES = {
+ 1:'① 德语站导航/页脚缺失 3 个链接（3 个目标 · 8,127 条）',
+ 2:'② log/ → blog/ 配置错误（6 条 → 实际只需改 1 个商详）',
+ 3:'③ URL 全角破折号字符（9 条 → 实际只需改 1 个商详）',
+ 4:'④ aerial-creators / beginners 路径缺失（43 条 → 15 个实际页面）',
+ 5:'⑤ 其他零散死链（74 条 → 16 个实际页面）'};
+function esc(s){ return String(s); }
+function blShow(g){
+  document.getElementById('bl-detail-title').textContent = BL_TITLES[g];
+  var d = BL_DATA[String(g)];
+  var html = '';
+  if(g === 1){
+    html = '<thead><tr><th style="width:90px">出现次数</th><th style="width:60px">状态码</th><th>坏链目标 URL</th></tr></thead><tbody>' + d.map(function(r){
+      return '<tr><td style="color:var(--red);font-weight:700">'+r.count.toLocaleString()+' 次</td><td>404</td><td class="mono">'+r.target+'</td></tr>';
+    }).join('') + '</tbody>';
+  } else {
+    html = '<thead><tr><th style="width:38%">实际页面（改这里）</th><th style="width:90px">爬虫路径数</th><th>坏链目标（该页面配置的错误链接）</th></tr></thead><tbody>';
+    d.forEach(function(p){
+      p.targets.forEach(function(t, i){
+        html += '<tr>';
+        if(i === 0){
+          html += '<td rowspan="'+p.targets.length+'" class="mono page-cell"><b>'+p.page+'</b><div class="sd-sub">'+p.kind+' · 改 1 处生效</div></td>';
+          html += '<td rowspan="'+p.targets.length+'" style="text-align:center">'+p.paths+'</td>';
+        }
+        html += '<td class="mono">'+t.target+' <span style="color:var(--tx3)">['+t.code+(t.count>1?' ×'+t.count:'')+']</span></td>';
+        html += '</tr>';
+      });
+    });
+    html += '</tbody>';
+  }
+  document.getElementById('bl-detail-body').innerHTML = html;
+  document.getElementById('bl-detail').style.display = 'block';
+}
+function blHide(){ document.getElementById('bl-detail').style.display = 'none'; }
+function openBLModal(){ document.getElementById('bl-mask').classList.add('open'); }
+function closeBLModal(){ document.getElementById('bl-mask').classList.remove('open'); }
+</script><script>
+function openSDModal(){ document.getElementById('sd-mask').classList.add('open'); }
+function closeSDModal(){ document.getElementById('sd-mask').classList.remove('open'); }
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeSDModal(); });
+</script></body>
+</html>
