@@ -120,12 +120,12 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
 <div class="sumgrid">
   <div class="sum"><div class="v">49</div><div class="l">发现问题总数</div></div>
   <div class="sum p0"><div class="v">7</div><div class="l">🔴 P0 紧急</div></div>
-  <div class="sum p1"><div class="v">16</div><div class="l">🟠 P1 高优先</div></div>
+  <div class="sum p1"><div class="v">15</div><div class="l">🟠 P1 高优先</div></div>
   <div class="sum p2"><div class="v">15</div><div class="l">🟡 P2 中等</div></div>
-  <div class="sum p3"><div class="v">10</div><div class="l">🔵 P3 低/参考</div></div>
+  <div class="sum p3"><div class="v">11</div><div class="l">🔵 P3 低/参考</div></div>
   <div class="sum ok"><div class="v">52</div><div class="l">✅ 通过项</div></div>
-  <div class="sum conf"><div class="v">8/49</div><div class="l">🧑‍💼 分工已确认</div>
-    <div class="confbar"><div class="confbar-fill" style="width:16%"></div></div>
+  <div class="sum conf"><div class="v">9/49</div><div class="l">🧑‍💼 分工已确认</div>
+    <div class="confbar"><div class="confbar-fill" style="width:18%"></div></div>
   </div>
 </div>
 
@@ -238,24 +238,10 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
 <section class="pri" id="P1">
   <div class="pri-head">
     <h3>🟠 P1 高优先</h3>
-    <span class="pri-count">16 项</span>
+    <span class="pri-count">15 项</span>
     <span class="pri-desc">影响爬取效率、权重传递或页面质量，建议 1 个月内排期</span>
   </div>
   <div class="cards">
-    <div class="card">
-      <div class="card-top">
-        <span class="zh">页面爬取深度过深</span>
-        <span class="num " >4,315</span>
-      </div>
-      <div class="owner-row"><span class="owner both">产研+运营</span><span class="ostate">待确认</span></div>
-      <div class="en">Page crawl depth</div>
-      <p class="why">4,315 个页面需要 3 次以上点击才能到达，收录和权重都会打折。</p>
-      <div class="card-bottom">
-        <div class="barwrap"><div class="bar"><div class="bar-fill high" style="width:54.8%"></div></div><span class="pct">54.8%</span></div>
-        <div class="total">检查总数 7,872</div>
-      </div>
-      <div class="act"><b>建议：</b>加强内链结构，与内链优化专项直接相关（首页/分类页增加入口）。</div>
-    </div>
     <div class="card">
       <div class="card-top">
         <span class="zh">H1 与 Title 内容重复</span>
@@ -686,7 +672,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
 <section class="pri" id="P3">
   <div class="pri-head">
     <h3>🔵 P3 低 / 仅参考</h3>
-    <span class="pri-count">10 项</span>
+    <span class="pri-count">11 项</span>
     <span class="pri-desc">影响极小或属正常现象，知晓即可，不必专门投入</span>
   </div>
   <div class="cards">
@@ -703,6 +689,20 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 7,785</div>
       </div>
       <div class="act"><b>建议：</b>不必专门处理；可在重点页面适当增加描述性文字。</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="zh">页面爬取深度过深</span>
+        <span class="num " >4,315</span>
+      </div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">✅ 已确认</span></div>
+      <div class="en">Page crawl depth</div>
+      <p class="why">4,315 个页面距首页超过 3 次点击。构成：explore 资讯文章 1,585（文章互链长尾，最深 28）、商品详情 1,286、标签页 1,239、博客 133 等；81.3% 集中在深度 4~5（轻度）。已验证首页商品卡在桌面端/移动端 SSR 中均为标准 A 链接，入口无问题；深度主要来自分类页翻页与 explore 长尾。分类页分页为 ?page=2 真链接模式（用户确认），爬虫可正常跟进、无漏抓，仅深度多一层；Google 官方明确深度仅为参考信号，不影响收录。</p>
+      <div class="card-bottom">
+        <div class="barwrap"><div class="bar"><div class="bar-fill high" style="width:54.8%"></div></div><span class="pct">54.8%</span></div>
+        <div class="total">检查总数 7,872</div>
+      </div>
+      <div class="act"><b>建议：</b>无需专项修复：可选优化为分类页加大每页展示数量（如 24→48）摊平深度，由产研评估；其余随相关迭代自然改善。</div>
     </div>
     <div class="card">
       <div class="card-top">
