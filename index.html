@@ -13,6 +13,15 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background:var(--bg); color:var(--tx); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; line-height:1.6; padding:28px 20px 60px; }
 .wrap { max-width:1400px; margin:0 auto; }
+.toc { position:fixed; left:10px; top:80px; max-height:calc(100vh - 110px); overflow-y:auto; width:175px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:10px 8px; z-index:500; font-size:12px; scrollbar-width:thin; scrollbar-color:#2b3a5e transparent; }
+.toc::-webkit-scrollbar { width:6px; }
+.toc::-webkit-scrollbar-thumb { background:#2b3a5e; border-radius:6px; }
+.toc-title { font-size:12px; font-weight:700; color:var(--tx2); padding:2px 8px 8px; border-bottom:1px solid var(--line); margin-bottom:6px; }
+.toc-l1 { display:block; padding:5px 8px; border-radius:6px; color:var(--tx); font-weight:600; text-decoration:none; margin-top:4px; }
+.toc-l1:hover, .toc-l1.active { background:#3b82f622; color:#60a5fa; }
+.toc-l2 { display:block; padding:3px 8px 3px 18px; border-radius:6px; color:var(--tx3); text-decoration:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.toc-l2:hover, .toc-l2.active { background:#3b82f622; color:#60a5fa; }
+@media (max-width:1800px) { .toc { display:none; } }
 h1 { font-size:24px; margin-bottom:6px; }
 .sub { color:var(--tx2); font-size:13px; margin-bottom:24px; }
 .sub b { color:var(--tx); }
@@ -120,6 +129,35 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
 </style>
 </head>
 <body>
+
+<nav id="toc" class="toc">
+  <div class="toc-title">📌 目录</div>
+  <a class="toc-l1" href="#P0" data-anchor="P0">🔴 P0 紧急（7）</a>
+<a class="toc-l2" href="#grp-P0-0" data-anchor="grp-P0-0">🔧 结构化数据问题</a>
+<a class="toc-l2" href="#grp-P0-1" data-anchor="grp-P0-1">🔗 链接路径问题（同一根因）</a>
+<a class="toc-l2" href="#grp-P0-2" data-anchor="grp-P0-2">📄 多路径重复问题（同一根因）</a>
+<a class="toc-l1" href="#P1" data-anchor="P1">🟠 P1 高优先（14）</a>
+<a class="toc-l2" href="#grp-P1-0" data-anchor="grp-P1-0">🔗 内链结构问题</a>
+<a class="toc-l2" href="#grp-P1-1" data-anchor="grp-P1-1">🔍 收录与索引</a>
+<a class="toc-l2" href="#grp-P1-2" data-anchor="grp-P1-2">🏷️ H1、Title 与 Meta 描述</a>
+<a class="toc-l2" href="#grp-P1-3" data-anchor="grp-P1-3">🌐 hreflang 多语言问题</a>
+<a class="toc-l2" href="#grp-P1-4" data-anchor="grp-P1-4">📋 其他待确认项</a>
+<a class="toc-l1" href="#P2" data-anchor="P2">🟡 P2 中等（15）</a>
+<a class="toc-l2" href="#grp-P2-0" data-anchor="grp-P2-0">⚡ JS/CSS 资源优化</a>
+<a class="toc-l2" href="#grp-P2-1" data-anchor="grp-P2-1">🔗 外部链接与图片失效</a>
+<a class="toc-l2" href="#grp-P2-2" data-anchor="grp-P2-2">📝 页面内容质量</a>
+<a class="toc-l2" href="#grp-P2-3" data-anchor="grp-P2-3">🏷️ 页面元素属性</a>
+<a class="toc-l2" href="#grp-P2-4" data-anchor="grp-P2-4">🌐 hreflang 语言配置</a>
+<a class="toc-l2" href="#grp-P2-5" data-anchor="grp-P2-5">📋 其他待确认项</a>
+<a class="toc-l1" href="#P3" data-anchor="P3">🔵 P3 低 / 仅参考（11）</a>
+<a class="toc-l2" href="#grp-P3-0" data-anchor="grp-P3-0">📄 文字与语义化</a>
+<a class="toc-l2" href="#grp-P3-1" data-anchor="grp-P3-1">🔗 URL 规范</a>
+<a class="toc-l2" href="#grp-P3-2" data-anchor="grp-P3-2">📝 锚文本与外链</a>
+<a class="toc-l2" href="#grp-P3-3" data-anchor="grp-P3-3">🤖 AI 友好与爬虫</a>
+<a class="toc-l2" href="#grp-P3-4" data-anchor="grp-P3-4">📋 其他待确认项</a>
+<a class="toc-l1" href="#NA" data-anchor="NA">✅ 无需处理（已核实确认）</a>
+</nav>
+
 <div class="wrap">
 <h1>🦾 mepsking.shop SEO 问题优先级报告</h1>
 <div class="sub">数据来源：<b>issues 总览表</b>（站点审计导出 2026-08-28）· 共检查 <b>101</b> 项 · 发现问题 <b>49</b> 项 · 通过 <b>52</b> 项 · 首次审计（无历史对比）</div>
@@ -142,8 +180,8 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
   <div class="sum p3"><div class="v">11</div><div class="l">🔵 P3 低/参考</div></div>
   <div class="sum na"><div class="v">2</div><div class="l">✅ 无需处理</div></div>
   <div class="sum ok"><div class="v">52</div><div class="l">✅ 通过项</div></div>
-  <div class="sum conf"><div class="v">16/49</div><div class="l">🧑‍💼 分工已确认</div>
-    <div class="confbar"><div class="confbar-fill" style="width:33%"></div></div>
+  <div class="sum conf"><div class="v">21/49</div><div class="l">🧑‍💼 分工已确认</div>
+    <div class="confbar"><div class="confbar-fill" style="width:43%"></div></div>
   </div>
 </div>
 
@@ -154,7 +192,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
     <span class="pri-count">7 项</span>
     <span class="pri-desc">直接伤害收录、排名或用户体验，建议 1~2 周内处理</span>
   </div>
-  <div class="cards"><div class="p0group"><b>🔧 结构化数据问题</b><span>根因：JSON-LD 模板字段问题（inLanguage 非法 + WebSite 缺 name）</span></div>
+  <div class="cards"><div class="p0group" id="grp-P0-0"><b>🔧 结构化数据问题</b><span>根因：JSON-LD 模板字段问题（inLanguage 非法 + WebSite 缺 name）</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">结构化数据标记错误</span>
@@ -168,7 +206,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 232,493</div>
       </div>
       <div class="act"><b>建议：</b>产研两处模板修改：商品页 ProductGroup 生成逻辑删除所有 inLanguage；首页 WebSite 块补 name 字段。一次迭代全站清零。</div>
-    </div><div class="p0group"><b>🔗 链接路径问题（同一根因）</b><span>导航/页脚/详情中配置了失效或错误路径的链接，坏链、404、500 同源</span></div>
+    </div><div class="p0group" id="grp-P0-1"><b>🔗 链接路径问题（同一根因）</b><span>导航/页脚/详情中配置了失效或错误路径的链接，坏链、404、500 同源</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">坏的内部链接</span>
@@ -210,7 +248,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 8,122</div>
       </div>
       <div class="act"><b>建议：</b>运营修复该商品详情中的链接配置：log/ → blog/（URL 是运营配置的，改这一条即可）。</div>
-    </div><div class="p0group"><b>📄 多路径重复问题（同一根因）</b><span>同一页面存在多个 URL 路径，导致 Title / Meta 描述 / 内容重复，随去除多路径迭代一并解决</span></div>
+    </div><div class="p0group" id="grp-P0-2"><b>📄 多路径重复问题（同一根因）</b><span>同一页面存在多个 URL 路径，导致 Title / Meta 描述 / 内容重复，随去除多路径迭代一并解决</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">Meta 描述重复</span>
@@ -259,7 +297,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
     <span class="pri-count">14 项</span>
     <span class="pri-desc">影响爬取效率、权重传递或页面质量，建议 1 个月内排期</span>
   </div>
-  <div class="cards"><div class="p0group"><b>🔗 内链结构问题</b><span>站内链接拓扑：内链指向数量、孤立页、协议版本</span></div>
+  <div class="cards"><div class="p0group" id="grp-P1-0"><b>🔗 内链结构问题</b><span>站内链接拓扑：内链指向数量、孤立页、协议版本</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">仅 1 条内链指向的页面</span>
@@ -301,13 +339,13 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 661,119</div>
       </div>
       <div class="act"><b>建议：</b>运营逐篇手动修改 257 篇文章的文本锚链接为 https（无法插件批量替换）；根目录商详 1 个逐个排查。</div>
-    </div><div class="p0group"><b>🔍 收录与索引</b><span>直接影响搜索引擎能否收录页面：robots 屏蔽、canonical 指向、sitemap 内容</span></div>
+    </div><div class="p0group" id="grp-P1-1"><b>🔍 收录与索引</b><span>直接影响搜索引擎能否收录页面：robots 屏蔽、canonical 指向、sitemap 内容</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">Canonical 指向失效</span>
         <span class="num num-link" onclick="openCAModal()" title="点击查看分组与 URL 清单">30</span>
       </div>
-      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">✅ 已确认</span></div>
       <div class="en">Broken canonical URLs</div>
       <p class="why">30 个页面的 canonical 指向失效，全部集中在 hubs/users/aerial-creators 与 beginners 两个专题页及其挂载商详上，与「坏内链」④号问题组同根源（专题页模板有 bug）。点击数字查看分组与 URL 清单。</p>
       <div class="card-bottom">
@@ -319,17 +357,17 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
     <div class="card">
       <div class="card-top">
         <span class="zh">sitemap 中包含错误页面</span>
-        <span class="num">6</span>
+        <span class="num num-link" onclick="openSMModal()" title="点击查看 sitemap 分布">6</span>
       </div>
-      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">✅ 已确认</span></div>
       <div class="en">Incorrect pages found in sitemap.xml</div>
-      <p class="why">6 个不该进 sitemap 的页面混在里面（如重定向/错误页）。</p>
+      <p class="why">6 个错误页面，全部位于 sitemap_pages.xml（明细表只到 sitemap 级，未给出具体页面清单）。点击数字查看分布。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.2%</span></div>
         <div class="total">检查总数 2,996</div>
       </div>
-      <div class="act"><b>建议：</b>从 sitemap 中剔除，保持 sitemap 只含规范可索引页面。</div>
-    </div><div class="p0group"><b>🏷️ H1、Title 与 Meta 描述</b><span>页面头部标签（标题/一级标题/描述）的生成与书写规范，标签页等模板级修复可合并执行</span></div>
+      <div class="act"><b>建议：</b>从线上打开 sitemap_pages.xml 核实这 6 个错误页面具体是哪些，确认后从 sitemap 移除或修正。</div>
+    </div><div class="p0group" id="grp-P1-2"><b>🏷️ H1、Title 与 Meta 描述</b><span>页面头部标签（标题/一级标题/描述）的生成与书写规范，标签页等模板级修复可合并执行</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">H1 与 Title 内容重复</span>
@@ -375,45 +413,45 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
     <div class="card">
       <div class="card-top">
         <span class="zh">Title 过长</span>
-        <span class="num">103</span>
+        <span class="num num-link" onclick="openTLModal()" title="点击查看分组与 URL 清单">103</span>
       </div>
-      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认</span></div>
       <div class="en">Title element is too long</div>
-      <p class="why">103 个页面 Title 超出建议长度，搜索结果会被截断。</p>
+      <p class="why">103 条逐页明细，去重后 86 个页面，全部为德语站 + WordPress（无英语页面）：挂载商详 46（随多路径归并）、博客文章 23、explore 5、根目录商详 7、分类页 2（原始 19 条 ?page= 变体）、品牌页 2、专题页 1。点击数字查看分组与 URL 清单。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:1.3%"></div></div><span class="pct">1.3%</span></div>
         <div class="total">检查总数 7,785</div>
       </div>
-      <div class="act"><b>建议：</b>精简文案，核心关键词前置。</div>
+      <div class="act"><b>建议：</b>Title 均为运营后台人工配置，需逐个人工优化精简（分类页翻页版会被收录，不能 noindex）；挂载商详随多路径归并。</div>
     </div>
     <div class="card">
       <div class="card-top">
         <span class="zh">Title 缺失或为空</span>
         <span class="num">2</span>
       </div>
-      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认</span></div>
       <div class="en">Title tag is missing or empty</div>
-      <p class="why">2 个页面没有 Title，属于硬伤。</p>
+      <p class="why">仅 2 个页面缺 Title（已逐条核实）：德语站营销中心 /de/marketingCenter/points-policy（积分政策）、/de/marketingCenter/termsconditions（条款条件），与「缺少 H1」项中 marketingCenter 页面头部标签缺失同源。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.0%</span></div>
         <div class="total">检查总数 7,785</div>
       </div>
-      <div class="act"><b>建议：</b>立即定位补上。</div>
+      <div class="act"><b>建议：</b>运营给这 2 个页面补上 Title（如「积分政策 | MEPSKING」「条款与条件 | MEPSKING」），成本极低顺手完成。</div>
     </div>
     <div class="card">
       <div class="card-top">
         <span class="zh">缺少 Meta 描述</span>
-        <span class="num">43</span>
+        <span class="num num-link" onclick="openMDModal()" title="点击查看分组与 URL 清单">43</span>
       </div>
-      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">待确认</span></div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认</span></div>
       <div class="en">Missing meta description</div>
-      <p class="why">43 个页面没有 Meta 描述，搜索结果里会随机截取页面文字。</p>
+      <p class="why">43 条逐页明细，去重后 38 个页面：blog 标签/聚合页 27（/blog/tag/…，无文章内容，不能用插件默认格式）+ blog 文章及系统页 8 + explore 1 + 德语 marketingCenter 政策页 2。点击数字查看分组与 URL 清单。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.6%</span></div>
         <div class="total">检查总数 7,785</div>
       </div>
-      <div class="act"><b>建议：</b>补写带关键词的描述，优先有流量的页面。</div>
-    </div><div class="p0group"><b>🌐 hreflang 多语言问题</b><span>英德双语站的 hreflang 配置</span></div>
+      <div class="act"><b>建议：</b>标签/聚合页按模板层统一配（标签名+品类词+品牌）；文章页用 SEO 插件默认格式截取正文；德语政策页与 Title 缺失项打包补齐。</div>
+    </div><div class="p0group" id="grp-P1-3"><b>🌐 hreflang 多语言问题</b><span>英德双语站的 hreflang 配置</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">hreflang 链接错误</span>
@@ -441,7 +479,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 16,323</div>
       </div>
       <div class="act"><b>建议：</b>同上，统一 hreflang 策略。</div>
-    </div><div class="p0group"><b>📋 其他待确认项</b><span>未归组的单项，逐个确认</span></div>
+    </div><div class="p0group" id="grp-P1-4"><b>📋 其他待确认项</b><span>未归组的单项，逐个确认</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">页面加载过慢</span>
@@ -462,7 +500,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
     <span class="pri-count">15 项</span>
     <span class="pri-desc">主要是性能与细节质量问题，可随版本迭代逐步优化</span>
   </div>
-  <div class="cards"><div class="p0group"><b>⚡ JS/CSS 资源优化</b><span>静态资源的压缩、缓存与可用性</span></div>
+  <div class="cards"><div class="p0group" id="grp-P2-0"><b>⚡ JS/CSS 资源优化</b><span>静态资源的压缩、缓存与可用性</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">JS/CSS 未压缩</span>
@@ -504,7 +542,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 360,480</div>
       </div>
       <div class="act"><b>建议：</b>排查失效的第三方资源，更换或移除。</div>
-    </div><div class="p0group"><b>🔗 外部链接与图片失效</b><span>指向站外的失效链接与图片</span></div>
+    </div><div class="p0group" id="grp-P2-1"><b>🔗 外部链接与图片失效</b><span>指向站外的失效链接与图片</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">外链失效</span>
@@ -532,7 +570,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 1,011,458</div>
       </div>
       <div class="act"><b>建议：</b>替换或移除，优先处理商品/内容页上的。</div>
-    </div><div class="p0group"><b>📝 页面内容质量</b><span>页面文字量与内容优化程度</span></div>
+    </div><div class="p0group" id="grp-P2-2"><b>📝 页面内容质量</b><span>页面文字量与内容优化程度</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">内容未充分优化</span>
@@ -560,7 +598,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 7,785</div>
       </div>
       <div class="act"><b>建议：</b>补充有价值的描述/参数/场景内容。</div>
-    </div><div class="p0group"><b>🏷️ 页面元素属性</b><span>页面内元素/属性的规范性：图片 ALT、锚文本、链接格式、H1 数量</span></div>
+    </div><div class="p0group" id="grp-P2-3"><b>🏷️ 页面元素属性</b><span>页面内元素/属性的规范性：图片 ALT、锚文本、链接格式、H1 数量</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">图片缺少 ALT</span>
@@ -630,7 +668,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 7,380</div>
       </div>
       <div class="act"><b>建议：</b>模板改为单 H1。</div>
-    </div><div class="p0group"><b>🌐 hreflang 语言配置</b><span>与 P1 的 hreflang 组呼应（优先级不同分开列）</span></div>
+    </div><div class="p0group" id="grp-P2-4"><b>🌐 hreflang 语言配置</b><span>与 P1 的 hreflang 组呼应（优先级不同分开列）</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">hreflang 语言不匹配</span>
@@ -644,7 +682,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 5,419</div>
       </div>
       <div class="act"><b>建议：</b>与上面 hreflang 问题一并处理（或整体移除）。</div>
-    </div><div class="p0group"><b>📋 其他待确认项</b><span>未归组的单项，逐个确认</span></div>
+    </div><div class="p0group" id="grp-P2-5"><b>📋 其他待确认项</b><span>未归组的单项，逐个确认</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">外部资源被 robots 禁止</span>
@@ -679,7 +717,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
     <span class="pri-count">11 项</span>
     <span class="pri-desc">影响极小或属正常现象，知晓即可，不必专门投入</span>
   </div>
-  <div class="cards"><div class="p0group"><b>📄 文字与语义化</b><span>页面文字占比与语义化标签使用</span></div>
+  <div class="cards"><div class="p0group" id="grp-P3-0"><b>📄 文字与语义化</b><span>页面文字占比与语义化标签使用</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">文字/HTML 比例过低</span>
@@ -707,7 +745,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 7,785</div>
       </div>
       <div class="act"><b>建议：</b>改版时顺手优化。</div>
-    </div><div class="p0group"><b>🔗 URL 规范</b><span>URL 写法规范</span></div>
+    </div><div class="p0group" id="grp-P3-1"><b>🔗 URL 规范</b><span>URL 写法规范</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">URL 中使用下划线</span>
@@ -735,7 +773,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 7,785</div>
       </div>
       <div class="act"><b>建议：</b>定位看一下，影响很小。</div>
-    </div><div class="p0group"><b>📝 锚文本与外链</b><span>锚文本质量与外链属性</span></div>
+    </div><div class="p0group" id="grp-P3-2"><b>📝 锚文本与外链</b><span>锚文本质量与外链属性</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">锚文本无描述性</span>
@@ -763,7 +801,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 63,400</div>
       </div>
       <div class="act"><b>建议：</b>确认即可。</div>
-    </div><div class="p0group"><b>🤖 AI 友好与爬虫</b><span>爬虫/机器可读性</span></div>
+    </div><div class="p0group" id="grp-P3-3"><b>🤖 AI 友好与爬虫</b><span>爬虫/机器可读性</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">缺少 llms.txt</span>
@@ -791,7 +829,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <div class="total">检查总数 7,872</div>
       </div>
       <div class="act"><b>建议：</b>无需专项修复：可选优化为分类页加大每页展示数量（如 24→48）摊平深度，由产研评估；其余随相关迭代自然改善。</div>
-    </div><div class="p0group"><b>📋 其他待确认项</b><span>未归组的单项，逐个确认</span></div>
+    </div><div class="p0group" id="grp-P3-4"><b>📋 其他待确认项</b><span>未归组的单项，逐个确认</span></div>
     <div class="card">
       <div class="card-top">
         <span class="zh">永久重定向（301）</span>
@@ -1304,7 +1342,7 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
           <tr class="bl-row" onclick="caShow('de:hubs 专题页本体')"><td><b>hubs 专题页本体</b><span class="del-tag">根源页·优先修正</span><div class="sd-sub">同上（德语版）。</div></td><td>2</td></tr>
           <tr class="bl-row" onclick="caShow('de:挂载商详')"><td><b>挂载商详</b><span class="na-tag">随多路径归并·不需处理</span><div class="sd-sub">同上（德语版）。</div></td><td>13</td></tr></tbody>
       </table>
-      <div class="sd-fix"><b>初步解读（待确认）：</b>① 2 个专题页本体（英德）是根源页，优先修正其 canonical（指向正确页面）；② 28 个挂载商详随多路径去除后自然消失，不单独处理；③ 建议与「坏内链」④号问题一起排查专题页模板，一次性修复链接 + canonical 两个问题。</div>
+      <div class="sd-fix"><b>处理口径（已确认）：</b>产研负责。① 4 个专题页本体（英德各 2）优先修正其 canonical；② 26 个挂载商详随多路径去除后自然消失，不单独处理；③ 与「坏内链」④号问题（同批页面路径缺失）一起排查专题页模板，一次性修复链接 + canonical 两个问题。</div>
     </div>
     <div id="ca-detail" class="bl-detail">
       <div class="bl-detail-head">
@@ -1316,6 +1354,111 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
         <table class="sd-table">
           <thead><tr><th style="width:44px">#</th><th>页面 URL</th></tr></thead>
           <tbody id="ca-detail-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="sm-mask" class="sd-mask" onclick="closeSMModal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>sitemap 中包含错误页面 · 分布明细（6 个）</b>
+      <span class="sd-close" onclick="closeSMModal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">基于 mega_export 表「Incorrect pages found in sitemap.xml」列：该列只统计到 sitemap 级——<b>sitemap_pages.xml 中含 6 个错误页面</b>，未提供具体是哪 6 个页面，需从线上 sitemap_pages.xml 中核实具体清单后补充。注：另有「孤立页面」项中 sitemap_videos.xml 已确认整份删除。</div>
+      <table class="sd-table">
+        <thead><tr><th>sitemap 文件</th><th style="width:90px">错误页面数</th></tr></thead>
+        <tbody><tr><td><b>sitemap_pages.xml</b><div class="sd-sub">商城站点页面 sitemap。</div></td><td>6</td></tr></tbody>
+      </table>
+      <div class="sd-fix"><b>处理口径（已确认）：</b>产研负责。① 从线上打开 sitemap_pages.xml 核实这 6 个错误页面具体是哪些（候选：功能页如购物车/个人中心/搜索、大小写重复页等）；② 确认后从 sitemap 移除或修正；③ 视频 sitemap（sitemap_videos.xml）已在「孤立页面」项确认整份删除。</div>
+    </div>
+  </div>
+</div>
+
+
+<div id="tl-mask" class="sd-mask" onclick="closeTLModal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>Title 过长 · 归类明细（103 个）</b>
+      <span class="sd-close" onclick="closeTLModal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">基于 mega_export 表「Title element is too long」列逐页明细全量归类（103 个，无重复）。特点：<b>没有英语页面，全部为德语站 + WordPress</b>（德语复合词天然较长）。这些页面的 Title 均为运营后台人工配置，需逐个人工优化；干净的翻页 URL（?page=）会被收录，不能 noindex。点击分组查看具体 URL：</div>
+      
+      <div class="one-sec-head"><b>WordPress 搭建（explore + blog）</b><span class="one-sec-cnt">28 个</span></div>
+      <table class="sd-table">
+        <thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead>
+        <tbody>
+          <tr class="bl-row" onclick="tlShow('wp:explore 资讯文章')"><td><b>explore 资讯文章</b><div class="sd-sub">同上（explore 文章 Title 也是人工配置）。</div></td><td>5</td></tr>
+          <tr class="bl-row" onclick="tlShow('wp:blog 博客文章')"><td><b>blog 博客文章</b><div class="sd-sub">文章 Title 为运营后台人工配置，长标题超限，需逐篇人工精简。</div></td><td>23</td></tr></tbody>
+      </table>
+      <div class="one-sec-head"><b>商城德语</b><span class="one-sec-cnt">58 个</span></div>
+      <table class="sd-table">
+        <thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead>
+        <tbody>
+          <tr class="bl-row" onclick="tlShow('de:根目录商详')"><td><b>根目录商详</b><div class="sd-sub">德语根目录商详 Title 为人工配置，超长（德语复合词天然较长），逐个精简。</div></td><td>7</td></tr>
+          <tr class="bl-row" onclick="tlShow('de:挂载商详')"><td><b>挂载商详</b><span class="na-tag">随多路径归并·不需处理</span><div class="sd-sub">带路径 + .html 结尾的商品变种页，随多路径去除后归并，<b>不需单独处理</b>。已核实：46 个挂载商详的文件名全部属于 7 个德语根目录商详（同商品不同路径变体，0 个例外），多路径去除后全部消失。</div></td><td>46</td></tr>
+          <tr class="bl-row" onclick="tlShow('de:分类页分页版（?page=）')"><td><b>分类页分页版（?page=）</b><span class="tpl-tag">会被收录·人工优化</span><div class="sd-sub">原始 19 条记录为同一页面的 ?page= 变体（/de/drone-parts?page=2~18、/de/drone-parts/batteries?page=2~3），按前缀归并后仅 <b>2 个页面</b>（Title 相同）。干净的翻页 <b>会被收录</b>，Title 为人工配置，需人工优化为短标题（如「分类名 - 第 X 页」）。</div></td><td>2</td></tr>
+          <tr class="bl-row" onclick="tlShow('de:brand 品牌列表页')"><td><b>brand 品牌列表页</b><div class="sd-sub">德语品牌列表页 Title 人工配置超长，逐个精简。</div></td><td>2</td></tr>
+          <tr class="bl-row" onclick="tlShow('de:hubs 专题页')"><td><b>hubs 专题页</b><div class="sd-sub">德语专题页 Title 人工配置超长，逐个精简。</div></td><td>1</td></tr></tbody>
+      </table>
+      <div class="sd-fix"><b>处理口径（已确认）：</b>运营负责，所有 Title 均为运营后台人工配置，逐个人工优化：① 46 个挂载商详随多路径归并不处理（已核实：全部属于 7 个德语根目录商详的同商品路径变体，多路径去除后全部消失）；② 分类页分页版按前缀归并后仅 2 个页面（/de/drone-parts、/de/drone-parts/batteries，原始 19 条 ?page= 变体），翻页会被收录，改为短标题（如「分类名 - 第 X 页」）；③ 23 篇 blog + 5 篇 explore 文章逐篇精简；④ 根目录商详 7 + 品牌页 2 + 专题页 1 逐个调整。</div>
+    </div>
+    <div id="tl-detail" class="bl-detail">
+      <div class="bl-detail-head">
+        <button class="bl-back" onclick="tlHide()">‹ 返回类型汇总</button>
+        <span id="tl-detail-title"></span>
+        <span class="sd-close" onclick="closeTLModal()">✕</span>
+      </div>
+      <div class="bl-detail-scroll">
+        <table class="sd-table">
+          <thead><tr><th style="width:44px">#</th><th>页面 URL</th></tr></thead>
+          <tbody id="tl-detail-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="md-mask" class="sd-mask" onclick="closeMDModal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>缺少 Meta 描述 · 归类明细（38 个）</b>
+      <span class="sd-close" onclick="closeMDModal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">基于 mega_export 表「Missing meta description」列逐页明细全量归类（原始 43 条，去重后 <b>38 个页面</b>）。点击分组查看具体 URL：</div>
+      
+      <div class="one-sec-head"><b>WordPress 搭建（explore + blog）</b><span class="one-sec-cnt">36 个</span></div>
+      <table class="sd-table">
+        <thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead>
+        <tbody>
+          <tr class="bl-row" onclick="mdShow('wp:blog 标签/聚合页')"><td><b>blog 标签/聚合页</b><div class="sd-sub">「/blog/tag/… 标签页 27 个 + /blog/tags 总页 + /blog/featured-posts」，是聚合页而非文章页，<b>没有文章内容可截取，不能用插件默认格式</b>。需按标签页模板层统一配（如「标签名 + 品类词 + 品牌」，与「H1 与 Title 重复」项的标签页口径一致）。</div></td><td>27</td></tr>
+          <tr class="bl-row" onclick="mdShow('wp:blog 博客文章')"><td><b>blog 博客文章</b><div class="sd-sub">8 个：4 篇文章页（.html）可用 WordPress SEO 插件默认格式（自动截取文章开头 150 字）覆盖；/blog/featured-posts 聚合页逐个补写；/blog/gold 系列 3 个为积分/会员系统页逐个补写。</div></td><td>8</td></tr>
+          <tr class="bl-row" onclick="mdShow('wp:explore 资讯文章')"><td><b>explore 资讯文章</b><div class="sd-sub">仅 1 篇，同上（SEO 插件默认格式一并覆盖）。</div></td><td>1</td></tr></tbody>
+      </table>
+      <div class="one-sec-head"><b>商城德语</b><span class="one-sec-cnt">2 个</span></div>
+      <table class="sd-table">
+        <thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead>
+        <tbody>
+          <tr class="bl-row" onclick="mdShow('de:marketingCenter 营销页')"><td><b>marketingCenter 营销页</b><div class="sd-sub">德语积分政策页与条款条件页，与「Title 缺失」「缺少 H1」项同源，页面头部标签基本全缺，建议一并补齐，与「Title 缺失」项打包执行。</div></td><td>2</td></tr></tbody>
+      </table>
+      <div class="sd-fix"><b>处理口径（已确认）：</b>运营负责。① blog 标签/聚合页 27 个（/blog/tag/…）无文章内容，<b>不能用插件默认格式截取</b>，需按模板层统一配（如「标签名 + 品类词 + 品牌」，与「H1 与 Title 重复」项的标签页口径一致）；② blog 8 个：4 篇文章页用插件默认格式覆盖，/blog/featured-posts 与 /blog/gold 系列 4 个逐个补写；③ explore 1 篇插件默认格式一并覆盖；④ 德语 marketingCenter 2 个政策页与「Title 缺失」项打包补齐。</div>
+    </div>
+    <div id="md-detail" class="bl-detail">
+      <div class="bl-detail-head">
+        <button class="bl-back" onclick="mdHide()">‹ 返回类型汇总</button>
+        <span id="md-detail-title"></span>
+        <span class="sd-close" onclick="closeMDModal()">✕</span>
+      </div>
+      <div class="bl-detail-scroll">
+        <table class="sd-table">
+          <thead><tr><th style="width:44px">#</th><th>页面 URL</th></tr></thead>
+          <tbody id="md-detail-body"></tbody>
         </table>
       </div>
     </div>
@@ -1559,6 +1702,76 @@ function caHide(){ document.getElementById('ca-detail').classList.remove('open')
 function openCAModal(){ document.getElementById('ca-mask').classList.add('open'); }
 function closeCAModal(){ caHide(); document.getElementById('ca-mask').classList.remove('open'); }
 </script><script>
+function openSMModal(){ document.getElementById('sm-mask').classList.add('open'); }
+function closeSMModal(){ document.getElementById('sm-mask').classList.remove('open'); }
+</script><script>
+var TL_DATA = {"wp:blog 博客文章": ["https://www.mepsking.shop/blog/best-5-inch-racing-freestyle-fpv-drone-kit-recommendations-in-2025.html", "https://www.mepsking.shop/blog/best-products-recommendation-of-foxeer.html", "https://www.mepsking.shop/blog/building-a-2-5-inch-drone-with-meps-1404-motors.html", "https://www.mepsking.shop/blog/building-an-apex-4-drone-with-meps-2004-motor.html", "https://www.mepsking.shop/blog/configuring-pid-presets-in-betaflight.html", "https://www.mepsking.shop/blog/dji-o4-air-unit-pro-guide.html", "https://www.mepsking.shop/blog/f3-flight-controller-a-glorious-past.html", "https://www.mepsking.shop/blog/fpv-drone-building-with-meps-2306-motor.html", "https://www.mepsking.shop/blog/fpv-tx-protocol-explained.html", "https://www.mepsking.shop/blog/how-to-program-a-drone-flight-controller.html", "https://www.mepsking.shop/blog/meps-1404-a-powerful-and-versatile-brushless-motor-for-micro-drones.html", "https://www.mepsking.shop/blog/meps-1804-motors-for-an-apex-4-quad.html", "https://www.mepsking.shop/blog/meps-2408-1900kv-motor-review.html", "https://www.mepsking.shop/blog/meps-sz-f7-hd-fpv-flight-controller.html", "https://www.mepsking.shop/blog/meps-sz4942-racing-drone-fpv-propeller.html", "https://www.mepsking.shop/blog/mepsking-fpv-f7-flight-controller.html", "https://www.mepsking.shop/blog/mepsking-fpv-f7-mini-flight-controller.html", "https://www.mepsking.shop/blog/mepsking-mini-sz45a-6s-fpv-drone-esc.html", "https://www.mepsking.shop/blog/mixing-different-fpv-motors-on-a-same-frame.html", "https://www.mepsking.shop/blog/pick-receiver-for-your-fpv-drone.html", "https://www.mepsking.shop/blog/safety-should-always-be-your-top-priority-in-fpv-flying.html", "https://www.mepsking.shop/blog/top-products-recommendation-of-emax.html", "https://www.mepsking.shop/blog/understanding-fpv-assembly-a-guide-to-fpv-drone-screws.html"], "de:挂载商详": ["https://www.mepsking.shop/de/brand/axisflying/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/brand/flycolor/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/brand/iflight/iflight-blitz-mini-f7-flight-controller.html", "https://www.mepsking.shop/de/brand/mateksys/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/brand/skyrc/skyrc-b6neo-240w-smart-charger.html", "https://www.mepsking.shop/de/brand/toolkitrc/skyrc-b6neo-240w-smart-charger.html", "https://www.mepsking.shop/de/deals/fpv-parts-clearance/thobby-pacer-v3-p2207-motor.html", "https://www.mepsking.shop/de/drone-parts/accessories/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/drone-parts/accessories/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/drone-parts/charger/skyrc-b6neo-240w-smart-charger.html", "https://www.mepsking.shop/de/drone-parts/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/drone-parts/esc/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/drone-parts/flight-controller/iflight-blitz-mini-f7-flight-controller.html", "https://www.mepsking.shop/de/drone-parts/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/drone-parts/iflight-blitz-mini-f7-flight-controller.html", "https://www.mepsking.shop/de/drone-parts/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/drone-parts/motors/thobby-pacer-v3-p2207-motor.html", "https://www.mepsking.shop/de/drone-parts/skyrc-b6neo-240w-smart-charger.html", "https://www.mepsking.shop/de/drone-parts/thobby-pacer-v3-p2207-motor.html", "https://www.mepsking.shop/de/tags/1500-1950KV/thobby-pacer-v3-p2207-motor.html", "https://www.mepsking.shop/de/tags/20x20mm/iflight-blitz-mini-f7-flight-controller.html", "https://www.mepsking.shop/de/tags/50a/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/tags/best-fpv-drones-for-beginners/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/tags/best-fpv-freestyle-drone/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/best-fpv-freestyle-drone/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/tags/best-fpv-racing-drone/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/best-fpv-racing-drone/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/tags/cinewhoops/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/cinewhoops/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/tags/continuous-current-20a/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/tags/continuous-current-35a/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/tags/continuous-current-45a/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/tags/esc-firmware-blheli32/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/tags/fc-mounting-size-20-20mm/iflight-blitz-mini-f7-flight-controller.html", "https://www.mepsking.shop/de/tags/fpv-cinematic-drone/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/freestyle-tinywhoop/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/freestyle-tinywhoop/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/tags/freestyle-toothpick/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/gyro-icm42688/iflight-blitz-mini-f7-flight-controller.html", "https://www.mepsking.shop/de/tags/long-range-fpv-drone/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/long-range-fpv-drone/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/tags/racing-tinywhoop/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/racing-toothpick/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/single-esc/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/tags/tinywhoop/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/tags/toothpick/dji-04-lite-air-unit-kit.html"], "de:brand 品牌列表页": ["https://www.mepsking.shop/de/brand/fatshark", "https://www.mepsking.shop/de/brand/isdt"], "de:根目录商详": ["https://www.mepsking.shop/de/dji-04-lite-air-unit-kit.html", "https://www.mepsking.shop/de/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "https://www.mepsking.shop/de/iflight-blitz-mini-f7-flight-controller.html", "https://www.mepsking.shop/de/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "https://www.mepsking.shop/de/skyrc-b6neo-240w-smart-charger.html", "https://www.mepsking.shop/de/thobby-pacer-v3-p2207-motor.html", "https://www.mepsking.shop/de/vr100-5-8g-fpv-goggles-helmet.html"], "de:分类页分页版（?page=）": ["https://www.mepsking.shop/de/drone-parts/batteries?page=2", "https://www.mepsking.shop/de/drone-parts?page=10"], "de:hubs 专题页": ["https://www.mepsking.shop/de/hubs/users/beginners"], "wp:explore 资讯文章": ["https://www.mepsking.shop/explore/fly-with-the-meps-sz2207.html", "https://www.mepsking.shop/explore/fpv-drone-motor-sizes-made-simple-learn-the-basics.html", "https://www.mepsking.shop/explore/how-the-dji-mini-3-pro-is-now-limited-to-120m-eu-drone-law-update.html", "https://www.mepsking.shop/explore/radiolink-t16d-transmitter.html", "https://www.mepsking.shop/explore/testing-gnb-high-volt-6s-lipos-not-what-i-expected.html"]};
+function tlShow(g){
+  var items = TL_DATA[g];
+  if(!items) return;
+  var parts = g.split(':');
+  var lang = parts[0], type = parts.slice(1).join(':');
+  var secName = lang === 'wp' ? 'WordPress 搭建' : (lang === 'de' ? '商城德语' : '商城英语');
+  var title = '<span style="color:var(--tx3);font-size:11.5px;margin-right:8px">' + secName + ' ›</span>' + escHtml(type);
+  if(type === '挂载商详') title += ' <span class=\"na-tag\">随多路径归并·不需处理</span>';
+  if(type === '分类页分页版（?page=）') title += ' <span class=\"tpl-tag\">会被收录·人工优化</span>';
+  document.getElementById('tl-detail-title').innerHTML = title + ' · ' + items.length + ' 个页面';
+  var html = '';
+  items.forEach(function(u, i){
+    html += '<tr><td style="width:34px;color:var(--tx3);text-align:right">' + (i+1) + '</td>' +
+      '<td class="mono" style="word-break:break-all">' + escHtml(u) + '</td></tr>';
+  });
+  document.getElementById('tl-detail-body').innerHTML = html;
+  var det = document.getElementById('tl-detail');
+  det.classList.add('open');
+  var sc = det.querySelector('.bl-detail-scroll'); if(sc) sc.scrollTop = 0;
+}
+function tlHide(){ document.getElementById('tl-detail').classList.remove('open'); }
+function openTLModal(){ document.getElementById('tl-mask').classList.add('open'); }
+function closeTLModal(){ tlHide(); document.getElementById('tl-mask').classList.remove('open'); }
+</script><script>
+var MD_DATA = {"wp:blog 博客文章": ["https://www.mepsking.shop/blog/affiliate-program.html", "https://www.mepsking.shop/blog/become-an-influencer-of-mepsking.html", "https://www.mepsking.shop/blog/f3-flight-controller-a-glorious-past.html", "https://www.mepsking.shop/blog/featured-posts", "https://www.mepsking.shop/blog/gold", "https://www.mepsking.shop/blog/gold-top", "https://www.mepsking.shop/blog/gold/credit", "https://www.mepsking.shop/blog/mepskings-fpv-drone-kit-free-trial.html"], "wp:blog 标签/聚合页": ["https://www.mepsking.shop/blog/tag/3-5-inch", "https://www.mepsking.shop/blog/tag/4-inch", "https://www.mepsking.shop/blog/tag/5-inch", "https://www.mepsking.shop/blog/tag/antenna", "https://www.mepsking.shop/blog/tag/camera", "https://www.mepsking.shop/blog/tag/cinewhoop", "https://www.mepsking.shop/blog/tag/esc", "https://www.mepsking.shop/blog/tag/flight-controller", "https://www.mepsking.shop/blog/tag/fpv-battery", "https://www.mepsking.shop/blog/tag/fpv-drone-simulator", "https://www.mepsking.shop/blog/tag/fpv-stack", "https://www.mepsking.shop/blog/tag/fpv-system", "https://www.mepsking.shop/blog/tag/frame", "https://www.mepsking.shop/blog/tag/freeestyle-fpv", "https://www.mepsking.shop/blog/tag/goggle", "https://www.mepsking.shop/blog/tag/gopro", "https://www.mepsking.shop/blog/tag/long-range-fpv", "https://www.mepsking.shop/blog/tag/motor", "https://www.mepsking.shop/blog/tag/programming", "https://www.mepsking.shop/blog/tag/propeller", "https://www.mepsking.shop/blog/tag/racing-fpv", "https://www.mepsking.shop/blog/tag/radio-controller", "https://www.mepsking.shop/blog/tag/receiver", "https://www.mepsking.shop/blog/tag/tinywhoop", "https://www.mepsking.shop/blog/tag/top-products", "https://www.mepsking.shop/blog/tag/vtx", "https://www.mepsking.shop/blog/tags"], "de:marketingCenter 营销页": ["https://www.mepsking.shop/de/marketingCenter/points-policy", "https://www.mepsking.shop/de/marketingCenter/termsconditions"], "wp:explore 资讯文章": ["https://www.mepsking.shop/explore/uncategorized"]};
+function mdShow(g){
+  var items = MD_DATA[g];
+  if(!items) return;
+  var parts = g.split(':');
+  var lang = parts[0], type = parts.slice(1).join(':');
+  var secName = lang === 'wp' ? 'WordPress 搭建' : (lang === 'de' ? '商城德语' : '商城英语');
+  var title = '<span style="color:var(--tx3);font-size:11.5px;margin-right:8px">' + secName + ' ›</span>' + escHtml(type);
+  document.getElementById('md-detail-title').innerHTML = title + ' · ' + items.length + ' 个页面';
+  var html = '';
+  items.forEach(function(u, i){
+    html += '<tr><td style="width:34px;color:var(--tx3);text-align:right">' + (i+1) + '</td>' +
+      '<td class="mono" style="word-break:break-all">' + escHtml(u) + '</td></tr>';
+  });
+  document.getElementById('md-detail-body').innerHTML = html;
+  var det = document.getElementById('md-detail');
+  det.classList.add('open');
+  var sc = det.querySelector('.bl-detail-scroll'); if(sc) sc.scrollTop = 0;
+}
+function mdHide(){ document.getElementById('md-detail').classList.remove('open'); }
+function openMDModal(){ document.getElementById('md-mask').classList.add('open'); }
+function closeMDModal(){ mdHide(); document.getElementById('md-mask').classList.remove('open'); }
+</script><script>
+(function(){
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  var anchors = links.map(function(a){ return document.getElementById(a.getAttribute('data-anchor')); }).filter(Boolean);
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var t = document.getElementById(a.getAttribute('data-anchor'));
+      if(t){ window.scrollTo({top: t.getBoundingClientRect().top + window.pageYOffset - 20, behavior:'smooth'}); }
+    });
+  });
+  function update(){
+    var pos = window.pageYOffset + 90, cur = null;
+    for(var i=0;i<anchors.length;i++){ if(anchors[i].offsetTop <= pos) cur = anchors[i].id; }
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-anchor') === cur); });
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script><script>
 function openSDModal(){ document.getElementById('sd-mask').classList.add('open'); }
 function closeSDModal(){ document.getElementById('sd-mask').classList.remove('open'); }
 document.addEventListener('keydown', function(e){
@@ -1578,6 +1791,9 @@ document.addEventListener('keydown', function(e){
   else if(document.getElementById('bc-mask').classList.contains('open')){ if(document.getElementById('bc-detail').classList.contains('open')){ bcHide(); } else { closeBCModal(); } }
   else if(document.getElementById('nf-mask').classList.contains('open')){ if(document.getElementById('nf-detail').classList.contains('open')){ nfHide(); } else { closeNFModal(); } }
   else if(document.getElementById('ca-mask').classList.contains('open')){ if(document.getElementById('ca-detail').classList.contains('open')){ caHide(); } else { closeCAModal(); } }
+  else if(document.getElementById('sm-mask').classList.contains('open')){ closeSMModal(); }
+  else if(document.getElementById('tl-mask').classList.contains('open')){ if(document.getElementById('tl-detail').classList.contains('open')){ tlHide(); } else { closeTLModal(); } }
+  else if(document.getElementById('md-mask').classList.contains('open')){ if(document.getElementById('md-detail').classList.contains('open')){ mdHide(); } else { closeMDModal(); } }
   else { closeSDModal(); }
 });
 </script></body>
