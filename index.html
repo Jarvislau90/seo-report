@@ -180,8 +180,8 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
   <div class="sum p3"><div class="v">11</div><div class="l">🔵 P3 低/参考</div></div>
   <div class="sum na"><div class="v">2</div><div class="l">✅ 无需处理</div></div>
   <div class="sum ok"><div class="v">52</div><div class="l">✅ 通过项</div></div>
-  <div class="sum conf"><div class="v">21/49</div><div class="l">🧑‍💼 分工已确认</div>
-    <div class="confbar"><div class="confbar-fill" style="width:43%"></div></div>
+  <div class="sum conf"><div class="v">22/49</div><div class="l">🧑‍💼 分工已确认</div>
+    <div class="confbar"><div class="confbar-fill" style="width:45%"></div></div>
   </div>
 </div>
 
@@ -455,30 +455,30 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
     <div class="card">
       <div class="card-top">
         <span class="zh">hreflang 链接错误</span>
-        <span class="num">26</span>
+        <span class="num num-link" onclick="openHFModal()" title="点击查看分组与 URL 清单">26</span>
       </div>
-      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
+      <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">✅ 已确认</span></div>
       <div class="en">Issues with incorrect hreflang links</div>
-      <p class="why">26 处 hreflang 指向错误。</p>
+      <p class="why">26 条逐页明细，全部是 hubs/users/aerial-creators 与 beginners 两个专题页的挂载商详（英德各 13），与「坏内链④」「Canonical 失效」同批页面、同一专题页模板根源。点击数字查看分组与 URL 清单。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.2%</span></div>
         <div class="total">检查总数 14,170</div>
       </div>
-      <div class="act"><b>建议：</b>站点如不做多语言可直接移除 hreflang；做多语言则修正指向。</div>
+      <div class="act"><b>建议：</b>与「坏内链④」「Canonical 失效」打包排查专题页模板，一次修复链接 + canonical + hreflang；26 个挂载商详随多路径去除。</div>
     </div>
     <div class="card">
       <div class="card-top">
         <span class="zh">hreflang 源码内冲突</span>
-        <span class="num">22</span>
+        <span class="num num-link" onclick="openHCModal()" title="点击查看分组与 URL 清单">22</span>
       </div>
       <div class="owner-row"><span class="owner dev">产研</span><span class="ostate">待确认</span></div>
       <div class="en">Hreflang conflicts within page source code</div>
-      <p class="why">22 处同一页面源码中 hreflang 互相冲突。</p>
+      <p class="why">22 条逐页明细，去重后 18 个页面，全部为英语站：大头是带 ?spec= 规格参数的商详 14 个，两个根因均已实测确认（?spec= 参数不一致 + 尾斜杠双版本不 301）。点击数字查看分组与 URL 清单。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.1%</span></div>
         <div class="total">检查总数 16,323</div>
       </div>
-      <div class="act"><b>建议：</b>同上，统一 hreflang 策略。</div>
+      <div class="act"><b>建议：</b>产研两处修复：① hreflang 输出不带查询参数的规范 URL（与 canonical 对齐）；② 带尾斜杠 URL 一律 301 到不带斜杠版本；挂载商详 2 个随多路径归并。</div>
     </div><div class="p0group" id="grp-P1-4"><b>📋 其他待确认项</b><span>未归组的单项，逐个确认</span></div>
     <div class="card">
       <div class="card-top">
@@ -1361,6 +1361,89 @@ footer { margin-top:30px; font-size:12px; color:var(--tx3); text-align:center; }
 </div>
 
 
+<div id="hf-mask" class="sd-mask" onclick="closeHFModal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>hreflang 链接错误 · 归类明细（26 个）</b>
+      <span class="sd-close" onclick="closeHFModal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">基于 mega_export 表「Issues with incorrect hreflang links」列逐页明细全量归类（26 个，无重复）。<b>26 个页面全部是 hubs/users/aerial-creators 与 beginners 两个专题页的挂载商详（英德各 13）</b>，与「坏内链④」「Canonical 指向失效」同批页面、同一专题页模板根源。点击分组查看具体 URL：</div>
+      
+      <div class="one-sec-head"><b>商城英语</b><span class="one-sec-cnt">13 个</span></div>
+      <table class="sd-table">
+        <thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead>
+        <tbody>
+          <tr class="bl-row" onclick="hfShow('en:挂载商详')"><td><b>挂载商详</b><span class="na-tag">随多路径归并·不需处理</span><div class="sd-sub">/hubs/users/… 专题页挂载商详的 hreflang 链接错误。与「坏内链④」「Canonical 失效」同批页面、同一专题页模板根源，随多路径去除后归并，<b>不需单独处理</b>。</div></td><td>13</td></tr></tbody>
+      </table>
+      <div class="one-sec-head"><b>商城德语</b><span class="one-sec-cnt">13 个</span></div>
+      <table class="sd-table">
+        <thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead>
+        <tbody>
+          <tr class="bl-row" onclick="hfShow('de:挂载商详')"><td><b>挂载商详</b><span class="na-tag">随多路径归并·不需处理</span><div class="sd-sub">同上（德语版）。</div></td><td>13</td></tr></tbody>
+      </table>
+      <div class="sd-fix"><b>处理口径（已确认）：</b>产研负责。① 26 个挂载商详随多路径去除后自然消失，不单独处理；② 与「坏内链④」「Canonical 指向失效」一起排查专题页模板，一次性修复链接 + canonical + hreflang 三个问题。</div>
+    </div>
+    <div id="hf-detail" class="bl-detail">
+      <div class="bl-detail-head">
+        <button class="bl-back" onclick="hfHide()">‹ 返回类型汇总</button>
+        <span id="hf-detail-title"></span>
+        <span class="sd-close" onclick="closeHFModal()">✕</span>
+      </div>
+      <div class="bl-detail-scroll">
+        <table class="sd-table">
+          <thead><tr><th style="width:44px">#</th><th>页面 URL</th></tr></thead>
+          <tbody id="hf-detail-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="hc-mask" class="sd-mask" onclick="closeHCModal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>hreflang 源码内冲突 · 归类明细（18 个）</b>
+      <span class="sd-close" onclick="closeHCModal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">基于 mega_export 表「Hreflang conflicts within page source code」列逐页明细全量归类（原始 22 条，去重后 <b>18 个页面</b>）。特点：<b>全部为英语站，无德语页面</b>；大头是带 ?spec= 规格参数的商详（14 个，12 根目录 + 2 挂载）——?spec= 按前缀归并后与根目录商详本体是同一页。点击分组查看具体 URL：</div>
+      
+      <div class="one-sec-head"><b>WordPress 搭建（explore + blog）</b><span class="one-sec-cnt">1 个</span></div>
+      <table class="sd-table">
+        <thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead>
+        <tbody>
+          <tr class="bl-row" onclick="hcShow('wp:explore 页面')"><td><b>explore 页面</b><div class="sd-sub">/explore/ 首页，逐个排查。</div></td><td>1</td></tr></tbody>
+      </table>
+      <div class="one-sec-head"><b>商城英语</b><span class="one-sec-cnt">17 个</span></div>
+      <table class="sd-table">
+        <thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead>
+        <tbody>
+          <tr class="bl-row" onclick="hcShow('en:根目录商详')"><td><b>根目录商详</b><span class="tpl-tag">多为 ?spec= 变体·产研统一处理</span><div class="sd-sub">12 个，多数带 ?spec=… 规格参数。用户抽查代码确认冲突根因：页面有 4 个标签——hreflang="en" 和 "x-default" 指向带 ?spec= 参数的 URL，而 canonical 指向不带参数的本体页，两者不一致即冲突。代码带 data-n-head="ssr"，为 Nuxt.js 服务端渲染，i18n 模块生成 hreflang 时保留了 ?spec= 查询参数，而 canonical 生成逻辑剥掉了参数，两边规则不一致。<b>修复：让 hreflang 输出不带查询参数的规范 URL（与 canonical 对齐），一处配置全站生效。</b></div></td><td>12</td></tr>
+          <tr class="bl-row" onclick="hcShow('en:挂载商详')"><td><b>挂载商详</b><span class="na-tag">随多路径归并·不需处理</span><div class="sd-sub">2 个（/brand/meps/…、/drone-parts/propellers/…，带 ?spec=），随多路径去除后归并，<b>不需单独处理</b>。</div></td><td>2</td></tr>
+          <tr class="bl-row" onclick="hcShow('en:分类页')"><td><b>分类页</b><div class="sd-sub">/drone-parts/goggles/ 分类页。用户实测确认（2026-09-01）：英德两页的 hreflang 配置本身完全正确（互指 + canonical 自指），冲突根因是**尾斜杠双版本**：带尾斜杠的 /drone-parts/goggles/ 返回 200 正常访问且不 301 跳转，而 canonical/hreflang 都指向不带斜杠版本，同一页面两个地址都存活即冲突。<b>另一矛盾（用户发现，已在 pages 表验证）：网站地图声明的是带斜杠版本，而页面 canonical 声明的是不带斜杠版本，两套规范地址信号互相矛盾（该页在表中被标记 Canonical to other page）。</b><b>修复：① sitemap 生成输出不带尾斜杠的规范 URL（与 canonical 对齐）；② 带尾斜杠 URL 一律 301 到不带斜杠版本（Nuxt 路由或 Nginx 层，一处配置全站生效）。</b></div></td><td>1</td></tr>
+          <tr class="bl-row" onclick="hcShow('en:其他页面')"><td><b>其他页面</b><div class="sd-sub">TrackOrder、affiliate-program 等功能/营销页，逐个排查。</div></td><td>2</td></tr></tbody>
+      </table>
+      <div class="sd-fix"><b>处理口径（已确认）：</b>产研负责，三处修复本质都是统一全站规范地址写法。① 根因一（?spec= 参数不一致，14 个商详）：用户抽查代码确认——hreflang 指向带 ?spec= 参数的 URL，canonical 指向不带参数的本体页（Nuxt.js SSR 的 i18n 模块保留了查询参数、canonical 逻辑剥掉参数）。<b>修复：hreflang 输出不带查询参数的规范 URL（与 canonical 对齐），一处配置全站清零</b>；② 根因二（尾斜杠双版本，分类页）：带尾斜杠版返回 200 且不 301，英德两页 hreflang 本身配置正确。<b>修复：带尾斜杠 URL 一律 301 到不带斜杠版本</b>；③ 根因三（用户发现，已在 pages 表验证）：<b>网站地图声明带斜杠版本、页面 canonical 声明不带斜杠版本，两套规范信号矛盾（/drone-parts/goggles/ 被标记 Canonical to other page）。修复：sitemap 生成统一输出不带尾斜杠的规范 URL，与 canonical 对齐</b>；④ 顺手核查德语页 canonical 自指；⑤ 挂载商详 2 个随多路径归并不处理；⑥ TrackOrder/affiliate-program/explore 首页共 3 个逐个排查。</div>
+    </div>
+    <div id="hc-detail" class="bl-detail">
+      <div class="bl-detail-head">
+        <button class="bl-back" onclick="hcHide()">‹ 返回类型汇总</button>
+        <span id="hc-detail-title"></span>
+        <span class="sd-close" onclick="closeHCModal()">✕</span>
+      </div>
+      <div class="bl-detail-scroll">
+        <table class="sd-table">
+          <thead><tr><th style="width:44px">#</th><th>页面 URL</th></tr></thead>
+          <tbody id="hc-detail-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div id="sm-mask" class="sd-mask" onclick="closeSMModal()">
   <div class="sd-modal" onclick="event.stopPropagation()">
     <div class="sd-head">
@@ -1702,6 +1785,55 @@ function caHide(){ document.getElementById('ca-detail').classList.remove('open')
 function openCAModal(){ document.getElementById('ca-mask').classList.add('open'); }
 function closeCAModal(){ caHide(); document.getElementById('ca-mask').classList.remove('open'); }
 </script><script>
+var HF_DATA = {"de:挂载商详": ["https://www.mepsking.shop/de/hubs/users/aerial-creators/flywoo-4s-3000mah-long-range-battery-p30b.html", "https://www.mepsking.shop/de/hubs/users/aerial-creators/geprc-storm-irt21700-40t-6s2p-8000mah-li-ion-battery.html", "https://www.mepsking.shop/de/hubs/users/aerial-creators/iflight-fullsend-6s-4000mah-li-ion-battery.html", "https://www.mepsking.shop/de/hubs/users/aerial-creators/iflight-fullsend-6s-8000mah-li-ion-battery.html", "https://www.mepsking.shop/de/hubs/users/aerial-creators/iflight-fullsend-e-6s-6000mah-battery.html", "https://www.mepsking.shop/de/hubs/users/aerial-creators/neon-2810-fpv-drone-motor.html", "https://www.mepsking.shop/de/hubs/users/aerial-creators/neon-2812-fpv-drone-motor.html", "https://www.mepsking.shop/de/hubs/users/aerial-creators/sz2808-fpv-cinematic-motor.html", "https://www.mepsking.shop/de/hubs/users/aerial-creators/thobby-f90-long-range-motor-x8-2806-5.html", "https://www.mepsking.shop/de/hubs/users/aerial-creators/thobby-v70a-f7-se-8s-fpv-4-in-1-stack.html", "https://www.mepsking.shop/de/hubs/users/beginners/sz1604-fpv-motor.html", "https://www.mepsking.shop/de/hubs/users/beginners/sz2104-fpv-motor.html", "https://www.mepsking.shop/de/hubs/users/beginners/thobby-f7-35a-45a-aio-for-cinewhoop-toothpick.html"], "en:挂载商详": ["https://www.mepsking.shop/hubs/users/aerial-creators/flywoo-4s-3000mah-long-range-battery-p30b.html", "https://www.mepsking.shop/hubs/users/aerial-creators/geprc-storm-irt21700-40t-6s2p-8000mah-li-ion-battery.html", "https://www.mepsking.shop/hubs/users/aerial-creators/iflight-fullsend-6s-4000mah-li-ion-battery.html", "https://www.mepsking.shop/hubs/users/aerial-creators/iflight-fullsend-6s-8000mah-li-ion-battery.html", "https://www.mepsking.shop/hubs/users/aerial-creators/iflight-fullsend-e-6s-6000mah-battery.html", "https://www.mepsking.shop/hubs/users/aerial-creators/neon-2810-fpv-drone-motor.html", "https://www.mepsking.shop/hubs/users/aerial-creators/neon-2812-fpv-drone-motor.html", "https://www.mepsking.shop/hubs/users/aerial-creators/sz2808-fpv-cinematic-motor.html", "https://www.mepsking.shop/hubs/users/aerial-creators/thobby-f90-long-range-motor-x8-2806-5.html", "https://www.mepsking.shop/hubs/users/aerial-creators/thobby-v70a-f7-se-8s-fpv-4-in-1-stack.html", "https://www.mepsking.shop/hubs/users/beginners/sz1604-fpv-motor.html", "https://www.mepsking.shop/hubs/users/beginners/sz2104-fpv-motor.html", "https://www.mepsking.shop/hubs/users/beginners/thobby-f7-35a-45a-aio-for-cinewhoop-toothpick.html"]};
+function hfShow(g){
+  var items = HF_DATA[g];
+  if(!items) return;
+  var parts = g.split(':');
+  var lang = parts[0], type = parts.slice(1).join(':');
+  var secName = lang === 'wp' ? 'WordPress 搭建' : (lang === 'de' ? '商城德语' : '商城英语');
+  var title = '<span style="color:var(--tx3);font-size:11.5px;margin-right:8px">' + secName + ' ›</span>' + escHtml(type);
+  if(type === '挂载商详') title += ' <span class=\"na-tag\">随多路径归并·不需处理</span>';
+  document.getElementById('hf-detail-title').innerHTML = title + ' · ' + items.length + ' 个页面';
+  var html = '';
+  items.forEach(function(u, i){
+    html += '<tr><td style="width:34px;color:var(--tx3);text-align:right">' + (i+1) + '</td>' +
+      '<td class="mono" style="word-break:break-all">' + escHtml(u) + '</td></tr>';
+  });
+  document.getElementById('hf-detail-body').innerHTML = html;
+  var det = document.getElementById('hf-detail');
+  det.classList.add('open');
+  var sc = det.querySelector('.bl-detail-scroll'); if(sc) sc.scrollTop = 0;
+}
+function hfHide(){ document.getElementById('hf-detail').classList.remove('open'); }
+function openHFModal(){ document.getElementById('hf-mask').classList.add('open'); }
+function closeHFModal(){ hfHide(); document.getElementById('hf-mask').classList.remove('open'); }
+</script><script>
+var HC_DATA = {"en:根目录商详": ["https://www.mepsking.shop//sz2207-fpv-brushless-motor-for-5inch-racing-drone.html", "https://www.mepsking.shop/boslipo-p7-version-850mah-95c-346s-fpv-battery.html?spec=850mAh 95C 6S1P 22.2V XT30 Plug", "https://www.mepsking.shop/dji-o4-air-unit-vtx.html?spec=DJI O4 Air Unit Pro", "https://www.mepsking.shop/emax-eco-ii-2807-brushless-motor.html?spec=1300KV", "https://www.mepsking.shop/f7-fpv-hd-flight-controller-with-dji-air-unit.html/", "https://www.mepsking.shop/mamba-mk4-h743-v2-55a-65a-128k-esc-stack.html?spec=F55A 128K ESC", "https://www.mepsking.shop/neon-2505-5-fpv-brushless-motor.html?spec=2000KV-Fluorescent green", "https://www.mepsking.shop/speedybee-f405-v4-bls-55a-30x30-fc-esc-stack.html?spec=BLS 55A 30x30 4in1 ESC", "https://www.mepsking.shop/sz1404-fpv-motor.html?spec=2900KV-Grey", "https://www.mepsking.shop/sz1604-fpv-motor.html?spec=2850KV-Black+Gray", "https://www.mepsking.shop/sz2306-fpv-brushless-motor-for-5inch-freestyle-drone.html?spec=V2 1750KV Fluorescent Green", "https://www.mepsking.shop/thobby-5-inch-freestyle-6s-power-system.html?spec=V2306 V3-1950KV-V50A SE Stack+T5146"], "en:其他页面": ["https://www.mepsking.shop/TrackOrder", "https://www.mepsking.shop/affiliate-program/"], "en:挂载商详": ["https://www.mepsking.shop/brand/meps/meps-neoncore-f405-60a-4-in-1-fpv-stack.html?spec=NEON 60A ESC", "https://www.mepsking.shop/drone-parts/propellers/t-hobby-cinematic-85-95-105-cinelifter-fpv-propeller.html?spec=8.5 * 5"], "en:分类页": ["https://www.mepsking.shop/drone-parts/goggles/"], "wp:explore 页面": ["https://www.mepsking.shop/explore/"]};
+function hcShow(g){
+  var items = HC_DATA[g];
+  if(!items) return;
+  var parts = g.split(':');
+  var lang = parts[0], type = parts.slice(1).join(':');
+  var secName = lang === 'wp' ? 'WordPress 搭建' : (lang === 'de' ? '商城德语' : '商城英语');
+  var title = '<span style="color:var(--tx3);font-size:11.5px;margin-right:8px">' + secName + ' ›</span>' + escHtml(type);
+  if(type === '挂载商详') title += ' <span class=\"na-tag\">随多路径归并·不需处理</span>';
+  if(type === '根目录商详') title += ' <span class=\"tpl-tag\">多为 ?spec= 变体·产研统一处理</span>';
+  document.getElementById('hc-detail-title').innerHTML = title + ' · ' + items.length + ' 个页面';
+  var html = '';
+  items.forEach(function(u, i){
+    html += '<tr><td style="width:34px;color:var(--tx3);text-align:right">' + (i+1) + '</td>' +
+      '<td class="mono" style="word-break:break-all">' + escHtml(u) + '</td></tr>';
+  });
+  document.getElementById('hc-detail-body').innerHTML = html;
+  var det = document.getElementById('hc-detail');
+  det.classList.add('open');
+  var sc = det.querySelector('.bl-detail-scroll'); if(sc) sc.scrollTop = 0;
+}
+function hcHide(){ document.getElementById('hc-detail').classList.remove('open'); }
+function openHCModal(){ document.getElementById('hc-mask').classList.add('open'); }
+function closeHCModal(){ hcHide(); document.getElementById('hc-mask').classList.remove('open'); }
+</script><script>
 function openSMModal(){ document.getElementById('sm-mask').classList.add('open'); }
 function closeSMModal(){ document.getElementById('sm-mask').classList.remove('open'); }
 </script><script>
@@ -1791,6 +1923,8 @@ document.addEventListener('keydown', function(e){
   else if(document.getElementById('bc-mask').classList.contains('open')){ if(document.getElementById('bc-detail').classList.contains('open')){ bcHide(); } else { closeBCModal(); } }
   else if(document.getElementById('nf-mask').classList.contains('open')){ if(document.getElementById('nf-detail').classList.contains('open')){ nfHide(); } else { closeNFModal(); } }
   else if(document.getElementById('ca-mask').classList.contains('open')){ if(document.getElementById('ca-detail').classList.contains('open')){ caHide(); } else { closeCAModal(); } }
+  else if(document.getElementById('hf-mask').classList.contains('open')){ if(document.getElementById('hf-detail').classList.contains('open')){ hfHide(); } else { closeHFModal(); } }
+  else if(document.getElementById('hc-mask').classList.contains('open')){ if(document.getElementById('hc-detail').classList.contains('open')){ hcHide(); } else { closeHCModal(); } }
   else if(document.getElementById('sm-mask').classList.contains('open')){ closeSMModal(); }
   else if(document.getElementById('tl-mask').classList.contains('open')){ if(document.getElementById('tl-detail').classList.contains('open')){ tlHide(); } else { closeTLModal(); } }
   else if(document.getElementById('md-mask').classList.contains('open')){ if(document.getElementById('md-detail').classList.contains('open')){ mdHide(); } else { closeMDModal(); } }
