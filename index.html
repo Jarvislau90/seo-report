@@ -654,7 +654,7 @@ table.mini tr:hover td { background:#182340; }
         <span class="zh">缺少 H1 标签</span>
         <span class="num num-link" onclick="openMh92Modal()" title="点击查看分组与 URL 清单">393</span>
       </div>
-      <div class="owner-row"><span class="owner both">产研+运营</span><span class="ostate">✅ 已确认（8/28 结论）</span><span class="chip c-down2">8/28 405 → 小幅改善</span></div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认（8/28 结论）</span><span class="chip c-down2">8/28 405 → 小幅改善</span></div>
       <div class="en">Missing h1</div>
       <p class="why">9/2 复测：405 → 393（tags 模板级问题仍未修复）。去重后 329 页：tags 标签页 228 占 69%（英德各 114，改一次模板即覆盖）；系统/活动页英德成对（deals/drone-parts/marketingCenter/hubs 等）；WordPress 20 页。点击数字查看分组与 URL 清单。</p>
       <div class="card-bottom">
@@ -666,25 +666,25 @@ table.mini tr:hover td { background:#182340; }
     <div class="card">
       <div class="card-top">
         <span class="zh">Title 过短</span>
-        <span class="num">209</span>
+        <span class="num num-link" onclick="openTs92Modal()" title="点击查看分组与 URL 清单">209</span>
       </div>
-      <div class="owner-row"><span class="owner both">产研+运营</span><span class="ostate">✅ 已确认（8/28 结论）</span><span class="chip c-down2">8/28 247 → 小幅改善</span></div>
+      <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认（8/28 结论）</span><span class="chip c-down2">8/28 247 → 小幅改善</span></div>
       <div class="en">Title element is too short</div>
-      <p class="why">246 页 Title 过短：tags 标签页 211 为模板级问题，挂载商详 23 随多路径归并。点击数字查看分组与 URL 清单。</p>
+      <p class="why">9/2 复测：247 → 209。去重后 209 页：tags 标签页 200 占 96%（其中 155 页 Title 是默认值「Mepsking」，与「Title 标签重复」最大组完全同源，修默认值后同步消除；其余 45 页标签名天然过短）；根目录商详 8、person 1。点击数字查看分组与 URL 清单。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:5.7%"></div></div><span class="pct">5.7%</span></div>
         <div class="total">检查总数 3,681</div>
       </div>
-      <div class="act"><b>建议：</b>给标签页 Title 模板加品类词 + 品牌后缀（如「1.5mm FPV Parts | MEPSKING」），一次配置覆盖 211 个，同时修复「H1 与 Title 重复」项的标签页问题；其余页面逐个调整。</div>
+      <div class="act"><b>建议：</b>修复模板默认 Title 配置（产研，与「Title 标签重复」同一修复，155 页同步消除）；标签页差异化 Title 规则由 SEO 同事制定后给产研协助批量落地（覆盖 45 页标签名过短）；根目录商详 8 页由 SEO 逐页调。不做无规则的自动生成。</div>
     </div>
     <div class="card">
       <div class="card-top">
         <span class="zh">Title 过长</span>
-        <span class="num">30</span>
+        <span class="num num-link" onclick="openTl92Modal()" title="点击查看分组与 URL 清单">30</span>
       </div>
       <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认（8/28 结论）</span><span class="chip c-down">8/28 103 → 大幅改善</span></div>
       <div class="en">Title element is too long</div>
-      <p class="why">86 页 Title 过长（全德语站+WP）：挂载商详 46 随多路径归并，其余博客/商详/分类页等逐页处理。点击数字查看分组与 URL 清单。</p>
+      <p class="why">9/2 复测：103 → 30（去重 27 页，下降 69%）。WP 搭建 16 页（标题加 - MEPSKING 后缀超长）+ 德语根商详 7 页（德语译名长）+ 德语列表页 4 页。点击数字查看分组与 URL 清单。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.8%"></div></div><span class="pct">0.8%</span></div>
         <div class="total">检查总数 3,681</div>
@@ -694,11 +694,11 @@ table.mini tr:hover td { background:#182340; }
     <div class="card">
       <div class="card-top">
         <span class="zh">Title 缺失或为空</span>
-        <span class="num">2</span>
+        <span class="num num-link" onclick="openModal('tm-modal')" title="点击查看 9/2 明细（2 页）">2</span>
       </div>
       <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认（8/28 结论）</span><span class="chip c-same">8/28 持平</span></div>
       <div class="en">Title tag is missing or empty</div>
-      <p class="why">仅 2 页缺 Title：德语 marketingCenter 积分政策、条款条件页。</p>
+      <p class="why">9/2 复测仍为 2 页：德语 marketingCenter 积分政策、条款条件页，与「缺少 H1」项同源。点击数字查看明细。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:0.6%"></div></div><span class="pct">0.1%</span></div>
         <div class="total">检查总数 3,681</div>
@@ -708,11 +708,11 @@ table.mini tr:hover td { background:#182340; }
     <div class="card">
       <div class="card-top">
         <span class="zh">缺少 Meta 描述</span>
-        <span class="num">46</span>
+        <span class="num num-link" onclick="openMm92Modal()" title="点击查看分组与 URL 清单">46</span>
       </div>
       <div class="owner-row"><span class="owner ops">运营</span><span class="ostate">✅ 已确认（8/28 结论）</span><span class="chip c-up">8/28 43 → 上升</span></div>
       <div class="en">Missing meta description</div>
-      <p class="why">38 页缺 Meta 描述：blog 标签/聚合页 27、文章及系统页 8、德语政策页 2。点击数字查看分组与 URL 清单。</p>
+      <p class="why">9/2 复测：43 → 46（去重 41 页，略升需核实）。blog/tag 标签聚合页 26 占大头（需按标签规则填写，不能用插件默认格式）+ blog 系统页 8、文章 4 + 德语政策页 2 + explore 1。点击数字查看分组与 URL 清单。</p>
       <div class="card-bottom">
         <div class="barwrap"><div class="bar"><div class="bar-fill low" style="width:1.2%"></div></div><span class="pct">1.2%</span></div>
         <div class="total">检查总数 3,681</div>
@@ -1160,6 +1160,20 @@ table.mini tr:hover td { background:#182340; }
     </div>
   </div>
 </div>
+<div class="modal-mask" id="tm-modal" onclick="if(event.target===this)closeModal('tm-modal')">
+  <div class="modal">
+    <div class="modal-head"><b>⚠️ Title 缺失或为空 · 9/2 审计明细（共 2 页）</b><button class="modal-close" onclick="closeModal('tm-modal')">✕</button></div>
+    <div class="modal-body">
+      <div class="modal-note">
+        与 8/28 结论一致：仅 2 个德语 marketingCenter 政策页缺 Title（积分政策、条款条件），与「缺少 H1」项中 marketingCenter 页面头部标签缺失同源；对应英语版页面已有 Title。由运营补齐页面 Title 与 H1。
+      </div>
+      <table class="mini">
+        <tr><th>#</th><th>页面 URL</th><th>归因备注</th></tr>
+        <tr><td>1</td><td class="mono">https://www.mepsking.shop/de/marketingCenter/points-policy</td><td>德语站积分政策页，与「缺少 H1」项 marketingCenter 页面头部标签缺失同源</td></tr><tr><td>2</td><td class="mono">https://www.mepsking.shop/de/marketingCenter/termsconditions</td><td>德语站条款条件页，同上；两个英语版页面已有 Title</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
 <script>
 function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
@@ -1347,6 +1361,107 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') document.que
   </div>
 </div>
 
+<div id="ts92-mask" class="sd-mask" onclick="closeTs92Modal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>Title 过短 · 9/2 审计归类明细（209 页）</b>
+      <span class="sd-close" onclick="closeTs92Modal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">基于 9/2 审计「Title element is too short」明细表：去重后 <b>209 个页面</b>，按 URL 标准分类方案归类。构成：① tags 标签页 200 页（占 96%，其中 155 页 Title 是模板默认值「Mepsking」——与「Title 标签重复」最大组完全同源，修复默认值后同步消除；其余 45 页直接用标签名做 Title 天然过短，如「1080p」「150C」）；② 根目录商详 8 页（含默认值 6 页 + 商品名过短 2 页）；③ person 页 1 页。点击类型行查看全部页面清单：</div>
+      <div class="one-sec-head"><b>商城英语</b><span class="one-sec-cnt">87 个</span></div>
+      <table class="sd-table"><thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead><tbody>
+          <tr class="bl-row" onclick="ts92Show(&quot;en:tags 标签页&quot;)"><td><b>tags 标签页</b></td><td>86</td></tr>
+          <tr class="bl-row" onclick="ts92Show(&quot;en:根目录商详&quot;)"><td><b>根目录商详</b></td><td>1</td></tr></tbody></table>
+      <div class="one-sec-head"><b>商城德语</b><span class="one-sec-cnt">122 个</span></div>
+      <table class="sd-table"><thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead><tbody>
+          <tr class="bl-row" onclick="ts92Show(&quot;de:tags 标签页&quot;)"><td><b>tags 标签页</b></td><td>114</td></tr>
+          <tr class="bl-row" onclick="ts92Show(&quot;de:根目录商详&quot;)"><td><b>根目录商详</b></td><td>7</td></tr>
+          <tr class="bl-row" onclick="ts92Show(&quot;de:person 目录页&quot;)"><td><b>person 目录页</b></td><td>1</td></tr></tbody></table>
+    </div>
+    <div id="ts92-detail" class="bl-detail">
+      <div class="bl-detail-head">
+        <button class="bl-back" onclick="ts92Hide()">‹ 返回类型汇总</button>
+        <span id="ts92-detail-title"></span>
+        <span class="sd-close" onclick="closeTs92Modal()">✕</span>
+      </div>
+      <div class="bl-detail-scroll">
+        <table class="sd-table">
+          <thead><tr><th style="width:44px">#</th><th>页面 URL</th></tr></thead>
+          <tbody id="ts92-detail-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tl92-mask" class="sd-mask" onclick="closeTl92Modal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>Title 过长 · 9/2 审计归类明细（27 页）</b>
+      <span class="sd-close" onclick="closeTl92Modal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">基于 9/2 审计「Title element is too long」明细表：30 条记录去重后 <b>27 个页面</b>（8/28 为 86 页，下降 69%），按 URL 标准分类方案归类。构成：① WordPress 搭建 16 页（explore 文章 9 + blog 7，多为标题加 - MEPSKING 后缀后超长）；② 德语根目录商详 7 页（德语译名较长）；③ 德语 brand 品牌列表 2、分类 1、专题页 1。点击类型行查看全部页面清单：</div>
+      <div class="one-sec-head"><b>WordPress 搭建（explore + blog）</b><span class="one-sec-cnt">16 个</span></div>
+      <table class="sd-table"><thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead><tbody>
+          <tr class="bl-row" onclick="tl92Show(&quot;wp:explore 文章&quot;)"><td><b>explore 文章</b></td><td>9</td></tr>
+          <tr class="bl-row" onclick="tl92Show(&quot;wp:blog 博客页&quot;)"><td><b>blog 博客页</b></td><td>7</td></tr></tbody></table>
+      <div class="one-sec-head"><b>商城德语</b><span class="one-sec-cnt">11 个</span></div>
+      <table class="sd-table"><thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead><tbody>
+          <tr class="bl-row" onclick="tl92Show(&quot;de:根目录商详&quot;)"><td><b>根目录商详</b></td><td>7</td></tr>
+          <tr class="bl-row" onclick="tl92Show(&quot;de:brand 品牌列表&quot;)"><td><b>brand 品牌列表</b></td><td>2</td></tr>
+          <tr class="bl-row" onclick="tl92Show(&quot;de:drone-parts 分类&quot;)"><td><b>drone-parts 分类</b></td><td>1</td></tr>
+          <tr class="bl-row" onclick="tl92Show(&quot;de:hubs 专题页&quot;)"><td><b>hubs 专题页</b></td><td>1</td></tr></tbody></table>
+    </div>
+    <div id="tl92-detail" class="bl-detail">
+      <div class="bl-detail-head">
+        <button class="bl-back" onclick="tl92Hide()">‹ 返回类型汇总</button>
+        <span id="tl92-detail-title"></span>
+        <span class="sd-close" onclick="closeTl92Modal()">✕</span>
+      </div>
+      <div class="bl-detail-scroll">
+        <table class="sd-table">
+          <thead><tr><th style="width:44px">#</th><th>页面 URL</th></tr></thead>
+          <tbody id="tl92-detail-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="mm92-mask" class="sd-mask" onclick="closeMm92Modal()">
+  <div class="sd-modal" onclick="event.stopPropagation()">
+    <div class="sd-head">
+      <b>缺少 Meta 描述 · 9/2 审计归类明细（41 页）</b>
+      <span class="sd-close" onclick="closeMm92Modal()">✕</span>
+    </div>
+    <div class="sd-body">
+      <div class="sd-note">基于 9/2 审计「The meta description tag is missing」明细表：46 条记录去重后 <b>41 个页面</b>，按 URL 标准分类方案归类。构成：① blog/tag/ 标签聚合页 26 页（无文章内容，需由 SEO 按标签规则填写，不能用插件默认格式）；② blog 其他系统页 8（如 carts/affiliate 等）+ blog 文章 4；③ 德语 marketingCenter 政策页 2；④ explore 文章 1。点击类型行查看全部页面清单：</div>
+      <div class="one-sec-head"><b>WordPress 搭建（explore + blog）</b><span class="one-sec-cnt">39 个</span></div>
+      <table class="sd-table"><thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead><tbody>
+          <tr class="bl-row" onclick="mm92Show(&quot;wp:blog 博客页&quot;)"><td><b>blog 博客页</b></td><td>38</td></tr>
+          <tr class="bl-row" onclick="mm92Show(&quot;wp:explore 文章&quot;)"><td><b>explore 文章</b></td><td>1</td></tr></tbody></table>
+      <div class="one-sec-head"><b>商城德语</b><span class="one-sec-cnt">2 个</span></div>
+      <table class="sd-table"><thead><tr><th>页面类型</th><th style="width:90px">页面数</th></tr></thead><tbody>
+          <tr class="bl-row" onclick="mm92Show(&quot;de:marketingCenter 信息页&quot;)"><td><b>marketingCenter 信息页</b></td><td>2</td></tr></tbody></table>
+    </div>
+    <div id="mm92-detail" class="bl-detail">
+      <div class="bl-detail-head">
+        <button class="bl-back" onclick="mm92Hide()">‹ 返回类型汇总</button>
+        <span id="mm92-detail-title"></span>
+        <span class="sd-close" onclick="closeMm92Modal()">✕</span>
+      </div>
+      <div class="bl-detail-scroll">
+        <table class="sd-table">
+          <thead><tr><th style="width:44px">#</th><th>页面 URL</th></tr></thead>
+          <tbody id="mm92-detail-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 function escHtml92(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
@@ -1491,6 +1606,102 @@ function mh92Show(g) {
 function mh92Hide() { document.getElementById('mh92-detail').classList.remove('open'); }
 function openMh92Modal() { document.getElementById('mh92-mask').classList.add('open'); }
 function closeMh92Modal() { mh92Hide(); document.getElementById('mh92-mask').classList.remove('open'); }
+
+var TS92_DATA = {"en:tags 标签页": [{"gid": 0, "urls": ["/tags/1-5-mm", "/tags/1080p", "/tags/150C", "/tags/15a-aio", "/tags/160C", "/tags/16CH", "/tags/1800mAh", "/tags/1S-Battery", "/tags/1s-aio", "/tags/2-3s-aio", "/tags/2-4GHz", "/tags/2-5-Inch", "/tags/2-Blade", "/tags/20x20mm", "/tags/2Inch", "/tags/2S-Battery", "/tags/3-5-Inch", "/tags/3-Blade", "/tags/3-Inch", "/tags/30x30mm", "/tags/3550kv-and-more", "/tags/35a-aio", "/tags/3S-Battery", "/tags/3s-motor", "/tags/4-6s-aio", "/tags/4-Blade", "/tags/4-in-1-esc", "/tags/4CH", "/tags/4S-Battery", "/tags/5-Inch", "/tags/5-mm", "/tags/50a", "/tags/550-850mAh", "/tags/60a", "/tags/6CH", "/tags/6S-Battery", "/tags/6a-aio", "/tags/7-Inch", "/tags/720p", "/tags/7a-aio", "/tags/8CH", "/tags/8S-Battery", "/tags/915MHZ", "/tags/95C", "/tags/ELRS", "/tags/T-Mount", "/tags/XT30", "/tags/XT60", "/tags/advanced", "/tags/analog", "/tags/beginner", "/tags/cc2500", "/tags/cinematic", "/tags/cinematic-motor", "/tags/cinewhoop", "/tags/continuous-current-20a", "/tags/continuous-current-30a", "/tags/continuous-current-35a", "/tags/continuous-current-45a", "/tags/continuous-current-55a", "/tags/continuous-current-65a", "/tags/esc-firmware-am32", "/tags/esc-firmware-blheli32", "/tags/esc-voltage-support-2-4s", "/tags/esc-voltage-support-3-6s", "/tags/esc-voltage-support-6-8s", "/tags/esc-voltage-support-8-12s", "/tags/fc-firmware-betaflight", "/tags/fc-firmware-inav", "/tags/fc-mounting-size-20-20mm", "/tags/fc-mounting-size-30-30mm", "/tags/freestyle", "/tags/gyro-bmi270", "/tags/gyro-icm42688", "/tags/gyrp-mpu6000", "/tags/long-range", "/tags/mcu-f4", "/tags/mcu-f7", "/tags/mcu-h7", "/tags/pro-pilot", "/tags/racing", "/tags/single-esc", "/tags/stack-36s", "/tags/stack-68s", "/tags/whoop", "/tags/with-dvr"], "desc": ""}], "en:根目录商详": [{"gid": 0, "urls": ["/meps-hat.html"], "desc": ""}], "de:tags 标签页": [{"gid": 0, "urls": ["/de/tags/1-5-mm", "/de/tags/1080p", "/de/tags/12s-motor", "/de/tags/1300-1800mAh", "/de/tags/1500-1950KV", "/de/tags/150C", "/de/tags/15a-aio", "/de/tags/160C", "/de/tags/16CH", "/de/tags/1800mAh", "/de/tags/1950-2750kv", "/de/tags/1S-Battery", "/de/tags/1s-aio", "/de/tags/1s-motor", "/de/tags/2-3s-aio", "/de/tags/2-4-inch-drone", "/de/tags/2-4GHz", "/de/tags/2-5-Inch", "/de/tags/2-Blade", "/de/tags/20x20mm", "/de/tags/2750-3550kv", "/de/tags/2Inch", "/de/tags/2S-Battery", "/de/tags/2s-motor", "/de/tags/3-5-Inch", "/de/tags/3-Blade", "/de/tags/3-Inch", "/de/tags/30x30mm", "/de/tags/3550kv-and-more", "/de/tags/35a-aio", "/de/tags/3S-Battery", "/de/tags/3s-motor", "/de/tags/4-6s-aio", "/de/tags/4-Blade", "/de/tags/4-in-1-esc", "/de/tags/4CH", "/de/tags/4S-Battery", "/de/tags/4s-motor", "/de/tags/5-Inch", "/de/tags/5-inch-drone", "/de/tags/5-mm", "/de/tags/50a", "/de/tags/550-850mAh", "/de/tags/5s-motor", "/de/tags/6-8-inch-drone", "/de/tags/60a", "/de/tags/6CH", "/de/tags/6S-Battery", "/de/tags/6a-aio", "/de/tags/6s-motor", "/de/tags/7-Inch", "/de/tags/720p", "/de/tags/75mm-tinywhoop", "/de/tags/7a-aio", "/de/tags/8-inch-motor", "/de/tags/850-1300mAh", "/de/tags/8CH", "/de/tags/8S-Battery", "/de/tags/8s-motor", "/de/tags/915MHZ", "/de/tags/95C", "/de/tags/ELRS", "/de/tags/T-Mount", "/de/tags/Under-550mAh", "/de/tags/XT30", "/de/tags/XT60", "/de/tags/advanced", "/de/tags/analog", "/de/tags/beginner", "/de/tags/cc2500", "/de/tags/cinematic", "/de/tags/cinematic-motor", "/de/tags/cinewhoop", "/de/tags/cinewhoops", "/de/tags/continuous-current-20a", "/de/tags/continuous-current-30a", "/de/tags/continuous-current-35a", "/de/tags/continuous-current-45a", "/de/tags/continuous-current-55a", "/de/tags/continuous-current-65a", "/de/tags/digital-hd", "/de/tags/esc-firmware-am32", "/de/tags/esc-firmware-blheli32", "/de/tags/esc-voltage-support-2-4s", "/de/tags/esc-voltage-support-3-6s", "/de/tags/esc-voltage-support-6-8s", "/de/tags/esc-voltage-support-8-12s", "/de/tags/fc-firmware-betaflight", "/de/tags/fc-firmware-inav", "/de/tags/fc-mounting-size-20-20mm", "/de/tags/fc-mounting-size-30-30mm", "/de/tags/fix-wing-motor", "/de/tags/fixed-wing", "/de/tags/freestyle", "/de/tags/freestyle-motor", "/de/tags/gyro-bmi270", "/de/tags/gyro-icm42688", "/de/tags/gyrp-mpu6000", "/de/tags/indoor-flying", "/de/tags/long-range-drone", "/de/tags/mcu-f4", "/de/tags/mcu-f7", "/de/tags/mcu-h7", "/de/tags/over-8-Inch-drone", "/de/tags/pro-pilot", "/de/tags/racing", "/de/tags/racing-motor", "/de/tags/single-esc", "/de/tags/stack-36s", "/de/tags/stack-68s", "/de/tags/under-1500KV", "/de/tags/whoop", "/de/tags/with-dvr", "/de/tags/without-dvr"], "desc": ""}], "de:根目录商详": [{"gid": 0, "urls": ["/de/betafpv-6-ports-1s-battery-charger-adapter-bt20-ph20.html", "/de/betafpv-hexacharger-1s-battery-charger-hub.html", "/de/betafpv-vr04-hd-fpv-goggles.html", "/de/meps-hat.html", "/de/radiomaster-gx15-expresslrs-fpv-radio-controller.html", "/de/radiomaster-gx15-max-expresslrs-fpv-radio-controller.html", "/de/rcinpower-gts-v3-0702-brushless-fpv-motor.html"], "desc": ""}], "de:person 目录页": [{"gid": 0, "urls": ["/de/person/myIndex"], "desc": ""}]};
+function ts92Show(g) {
+  var items = TS92_DATA[g];
+  if (!items) return;
+  var parts = g.split(':');
+  var secKey = parts[0], type = parts.slice(1).join(':');
+  var secName = secKey === 'wp' ? 'WordPress 搭建' : (secKey === 'de' ? '商城德语' : '商城英语');
+  var title = '<span style="color:var(--tx3);font-size:11.5px;margin-right:8px">' + secName + ' ›</span>' + escHtml92(type);
+  if (type === '挂载商详') title += ' <span class="na-tag">不做内链优化</span>';
+  var totalN = items.reduce(function(s, b) { return s + b.urls.length; }, 0);
+  document.getElementById('ts92-detail-title').innerHTML = title + ' · ' + totalN + ' 个页面';
+  var html = '', idx = 0;
+  items.forEach(function(b) {
+    html += '<tr><td colspan="2" style="padding-top:14px;color:var(--tx3);font-weight:600;font-size:12px;border-bottom:1px solid var(--line)">页面清单（Title 过短）· ' + b.urls.length + ' 页</td></tr>';
+    if (b.desc) {
+      html += '<tr><td colspan="2" style="padding:4px 6px 8px;color:var(--tx2);font-size:11.5px;border-bottom:1px solid #1a2540"><b style="color:var(--tx3);font-weight:600">共用描述：</b>' + escHtml92(b.desc) + '</td></tr>';
+    }
+    b.urls.forEach(function(u) {
+      idx += 1;
+      html += '<tr><td style="width:34px;color:var(--tx3);text-align:right">' + idx + '</td>' +
+        '<td class="mono" style="word-break:break-all">' + escHtml92(u) + '</td></tr>';
+    });
+  });
+  document.getElementById('ts92-detail-body').innerHTML = html;
+  var det = document.getElementById('ts92-detail');
+  det.classList.add('open');
+  var sc = det.querySelector('.bl-detail-scroll'); if (sc) sc.scrollTop = 0;
+}
+function ts92Hide() { document.getElementById('ts92-detail').classList.remove('open'); }
+function openTs92Modal() { document.getElementById('ts92-mask').classList.add('open'); }
+function closeTs92Modal() { ts92Hide(); document.getElementById('ts92-mask').classList.remove('open'); }
+
+var TL92_DATA = {"wp:explore 文章": [{"gid": 0, "urls": ["/explore/fly-with-the-meps-sz2207.html", "/explore/fpv-camera-comparison.html", "/explore/fpv-drone-motor-sizes-made-simple-learn-the-basics.html", "/explore/how-the-dji-mini-3-pro-is-now-limited-to-120m-eu-drone-law-update.html", "/explore/mepsking-becomes-an-official-sponsor-of-australian-whoop-championships-2026.html", "/explore/radiolink-t16d-transmitter.html", "/explore/speedybee-f405-v4-stack-best-choice-for-cinelifters-xl-drones.html", "/explore/testing-gnb-high-volt-6s-lipos-not-what-i-expected.html", "/explore/unboxing-radiomaster-tx15.html"], "desc": ""}], "wp:blog 博客页": [{"gid": 0, "urls": ["/blog/best-5-inch-racing-freestyle-fpv-drone-kit-recommendations-in-2025.html", "/blog/building-an-apex-4-drone-with-meps-2004-motor.html", "/blog/dji-o4-air-unit-pro-guide.html", "/blog/fpv-tx-protocol-explained.html", "/blog/meps-1404-a-powerful-and-versatile-brushless-motor-for-micro-drones.html", "/blog/meps-1804-motors-for-an-apex-4-quad.html", "/blog/meps-2408-1900kv-motor-review.html"], "desc": ""}], "de:根目录商详": [{"gid": 0, "urls": ["/de/dji-04-lite-air-unit-kit.html", "/de/flycolor-raptor-5-blheli32-20a-3-6s-individual-esc.html", "/de/iflight-blitz-mini-f7-flight-controller.html", "/de/matek-ap-periph-can-l4-bm-digital-power-monitor.html", "/de/skyrc-b6neo-240w-smart-charger.html", "/de/thobby-pacer-v3-p2207-motor.html", "/de/vr100-5-8g-fpv-goggles-helmet.html"], "desc": ""}], "de:brand 品牌列表": [{"gid": 0, "urls": ["/de/brand/fatshark", "/de/brand/isdt"], "desc": ""}], "de:drone-parts 分类": [{"gid": 0, "urls": ["/de/drone-parts/batteries"], "desc": ""}], "de:hubs 专题页": [{"gid": 0, "urls": ["/de/hubs/users/beginners"], "desc": ""}]};
+function tl92Show(g) {
+  var items = TL92_DATA[g];
+  if (!items) return;
+  var parts = g.split(':');
+  var secKey = parts[0], type = parts.slice(1).join(':');
+  var secName = secKey === 'wp' ? 'WordPress 搭建' : (secKey === 'de' ? '商城德语' : '商城英语');
+  var title = '<span style="color:var(--tx3);font-size:11.5px;margin-right:8px">' + secName + ' ›</span>' + escHtml92(type);
+  if (type === '挂载商详') title += ' <span class="na-tag">不做内链优化</span>';
+  var totalN = items.reduce(function(s, b) { return s + b.urls.length; }, 0);
+  document.getElementById('tl92-detail-title').innerHTML = title + ' · ' + totalN + ' 个页面';
+  var html = '', idx = 0;
+  items.forEach(function(b) {
+    html += '<tr><td colspan="2" style="padding-top:14px;color:var(--tx3);font-weight:600;font-size:12px;border-bottom:1px solid var(--line)">页面清单（Title 过长）· ' + b.urls.length + ' 页</td></tr>';
+    if (b.desc) {
+      html += '<tr><td colspan="2" style="padding:4px 6px 8px;color:var(--tx2);font-size:11.5px;border-bottom:1px solid #1a2540"><b style="color:var(--tx3);font-weight:600">共用描述：</b>' + escHtml92(b.desc) + '</td></tr>';
+    }
+    b.urls.forEach(function(u) {
+      idx += 1;
+      html += '<tr><td style="width:34px;color:var(--tx3);text-align:right">' + idx + '</td>' +
+        '<td class="mono" style="word-break:break-all">' + escHtml92(u) + '</td></tr>';
+    });
+  });
+  document.getElementById('tl92-detail-body').innerHTML = html;
+  var det = document.getElementById('tl92-detail');
+  det.classList.add('open');
+  var sc = det.querySelector('.bl-detail-scroll'); if (sc) sc.scrollTop = 0;
+}
+function tl92Hide() { document.getElementById('tl92-detail').classList.remove('open'); }
+function openTl92Modal() { document.getElementById('tl92-mask').classList.add('open'); }
+function closeTl92Modal() { tl92Hide(); document.getElementById('tl92-mask').classList.remove('open'); }
+
+var MM92_DATA = {"wp:blog 博客页": [{"gid": 0, "urls": ["/blog/affiliate-program.html", "/blog/become-an-influencer-of-mepsking.html", "/blog/carts", "/blog/directmessage", "/blog/f3-flight-controller-a-glorious-past.html", "/blog/featured-posts", "/blog/gold", "/blog/gold-top", "/blog/mepskings-fpv-drone-kit-free-trial.html", "/blog/mission", "/blog/tag/3-5-inch", "/blog/tag/4-inch", "/blog/tag/5-inch", "/blog/tag/antenna", "/blog/tag/camera", "/blog/tag/cinewhoop", "/blog/tag/esc", "/blog/tag/flight-controller", "/blog/tag/fpv-battery", "/blog/tag/fpv-drone-simulator", "/blog/tag/fpv-stack", "/blog/tag/fpv-system", "/blog/tag/frame", "/blog/tag/freeestyle-fpv", "/blog/tag/goggle", "/blog/tag/gopro", "/blog/tag/long-range-fpv", "/blog/tag/motor", "/blog/tag/programming", "/blog/tag/propeller", "/blog/tag/racing-fpv", "/blog/tag/radio-controller", "/blog/tag/receiver", "/blog/tag/tinywhoop", "/blog/tag/top-products", "/blog/tag/vtx", "/blog/tags", "/blog/task"], "desc": ""}], "wp:explore 文章": [{"gid": 0, "urls": ["/explore/uncategorized"], "desc": ""}], "de:marketingCenter 信息页": [{"gid": 0, "urls": ["/de/marketingCenter/points-policy", "/de/marketingCenter/termsconditions"], "desc": ""}]};
+function mm92Show(g) {
+  var items = MM92_DATA[g];
+  if (!items) return;
+  var parts = g.split(':');
+  var secKey = parts[0], type = parts.slice(1).join(':');
+  var secName = secKey === 'wp' ? 'WordPress 搭建' : (secKey === 'de' ? '商城德语' : '商城英语');
+  var title = '<span style="color:var(--tx3);font-size:11.5px;margin-right:8px">' + secName + ' ›</span>' + escHtml92(type);
+  if (type === '挂载商详') title += ' <span class="na-tag">不做内链优化</span>';
+  var totalN = items.reduce(function(s, b) { return s + b.urls.length; }, 0);
+  document.getElementById('mm92-detail-title').innerHTML = title + ' · ' + totalN + ' 个页面';
+  var html = '', idx = 0;
+  items.forEach(function(b) {
+    html += '<tr><td colspan="2" style="padding-top:14px;color:var(--tx3);font-weight:600;font-size:12px;border-bottom:1px solid var(--line)">页面清单（缺 Meta 描述）· ' + b.urls.length + ' 页</td></tr>';
+    if (b.desc) {
+      html += '<tr><td colspan="2" style="padding:4px 6px 8px;color:var(--tx2);font-size:11.5px;border-bottom:1px solid #1a2540"><b style="color:var(--tx3);font-weight:600">共用描述：</b>' + escHtml92(b.desc) + '</td></tr>';
+    }
+    b.urls.forEach(function(u) {
+      idx += 1;
+      html += '<tr><td style="width:34px;color:var(--tx3);text-align:right">' + idx + '</td>' +
+        '<td class="mono" style="word-break:break-all">' + escHtml92(u) + '</td></tr>';
+    });
+  });
+  document.getElementById('mm92-detail-body').innerHTML = html;
+  var det = document.getElementById('mm92-detail');
+  det.classList.add('open');
+  var sc = det.querySelector('.bl-detail-scroll'); if (sc) sc.scrollTop = 0;
+}
+function mm92Hide() { document.getElementById('mm92-detail').classList.remove('open'); }
+function openMm92Modal() { document.getElementById('mm92-mask').classList.add('open'); }
+function closeMm92Modal() { mm92Hide(); document.getElementById('mm92-mask').classList.remove('open'); }
 
 </script>
 
